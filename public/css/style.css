@@ -1,4 +1,4 @@
-/* 
+﻿/* 
 ***************************************
 Template Name: Eduor || Online Education Learning Next JS Template
 Version: 1.0
@@ -110,16 +110,17 @@ button {
 }
 
 :root {
-  --colorPrimary: #ff7f46;
-  --colorBlue: #4582ff;
-  --colorGreen: #00d6d3;
-  --colorBlack: #0f2239;
+  --colorPrimary: #F0D264;
+  --colorBlue: #003B69;
+  --colorGreen: #CCAA00;
+  --colorBlack: #000814;
   --paraColor: #636363;
-  --ratingColor: #f1cc38;
+  --ratingColor: #F0D264;
   --colorWhite: #ffffff;
+  --colorNavy: #001D3D;
   --paraFont: "Rubik", sans-serif;
   --headingFont: "Montserrat", sans-serif;
-  --box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  --box-shadow: rgba(0, 59, 105, 0.2) 0px 2px 8px 0px;
 }
 
 /* button css atart */
@@ -161,7 +162,7 @@ button {
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 #faa392;
+    box-shadow: 0 0 0 0 #CCAA00;
   }
 }
 
@@ -169,7 +170,7 @@ button {
   background: var(--colorBlue) !important;
 }
 .main_menu_3 .common_btn {
-  background-color: #00d6d3 !important;
+  background-color: #CCAA00 !important;
 }
 .common_btn_2:hover,
 .common_btn_2:focus {
@@ -604,7 +605,7 @@ button {
 .tf__droap_menu li a:hover {
   color: var(--colorPrimary);
   padding-left: 25px;
-  background: #ff7f460f;
+  background: #F0D2640f;
 }
 
 .tf__droap_menu li a.active::after,
@@ -887,19 +888,19 @@ button {
 }
 
 .tf__single_category.blue .tf__single_category_icon {
-  background: #4582ff;
+  background: #003B69;
 }
 
 .tf__single_category.blue .tf__single_category_text {
-  border-color: #4582ff;
+  border-color: #003B69;
 }
 
 .tf__single_category.blue:hover .tf__single_category_text::after {
-  background: #4582ff;
+  background: #003B69;
 }
 
 .tf__single_category.blue:hover .tf__single_category_icon {
-  color: #4582ff;
+  color: #003B69;
 }
 
 .tf__single_category.green .tf__single_category_icon {
@@ -935,19 +936,19 @@ button {
 }
 
 .tf__single_category.orange .tf__single_category_icon {
-  background: #ff7f46;
+  background: #F0D264;
 }
 
 .tf__single_category.orange .tf__single_category_text {
-  border-color: #ff7f46;
+  border-color: #F0D264;
 }
 
 .tf__single_category.orange:hover .tf__single_category_text::after {
-  background: #ff7f46;
+  background: #F0D264;
 }
 
 .tf__single_category.orange:hover .tf__single_category_icon {
-  color: #ff7f46;
+  color: #F0D264;
 }
 
 .tf__single_category.red .tf__single_category_icon {
@@ -1273,11 +1274,11 @@ button {
 }
 
 .tf__single_event_img .event_category.blue {
-  background: #4582ff;
+  background: #003B69;
 }
 
 .tf__single_event_img .event_category.orange {
-  background: #ff7f46;
+  background: #F0D264;
 }
 
 .tf__single_event_img .event_category.green {
@@ -1605,7 +1606,7 @@ button {
 }
 
 .accordion-item.orange button::before {
-  background: #ff7f46;
+  background: #F0D264;
 }
 
 .accordion-item.green button::before {
@@ -1617,7 +1618,7 @@ button {
 }
 
 .accordion-item.blue button::before {
-  background: #4582ff;
+  background: #003B69;
 }
 
 .tf__faq_accordion .accordion-header button::after {
@@ -1792,11 +1793,11 @@ button {
 }
 
 .tf__work_single.orange::after {
-  background: #ff7f46;
+  background: #F0D264;
 }
 
 .tf__work_single.orange a {
-  color: #ff7f46;
+  color: #F0D264;
 }
 
 .tf__work_single.green::after {
@@ -2008,11 +2009,11 @@ button {
 }
 
 .tf__activities_item.orange span {
-  background: #ff7f46;
+  background: #F0D264;
 }
 
 .tf__activities_item.orange:hover {
-  border: 1px dashed #ff7f46;
+  border: 1px dashed #F0D264;
 }
 
 .tf__activities_item.green span {
@@ -2134,7 +2135,7 @@ button {
 }
 
 .tf__single_blog .category.orange {
-  background: #ff7f46;
+  background: #F0D264;
 }
 
 .tf__single_blog .category.green {
@@ -2476,7 +2477,7 @@ button {
 }
 
 .tf__about_2_img p {
-  background: #00d6d3;
+  background: #CCAA00;
   text-align: center;
   color: var(--colorWhite);
   text-transform: uppercase;
@@ -2860,7 +2861,7 @@ button {
   font-size: 18px;
   font-weight: 600;
   color: var(--colorWhite);
-  background: #0f223970;
+  background: #00081470;
   display: inline-block;
   padding: 5px 20px;
 }
@@ -3807,7 +3808,7 @@ button {
   height: 40px;
   line-height: 40px;
   text-align: center;
-  background: #ff7f4614;
+  background: #F0D26414;
   color: var(--colorPrimary);
   border-radius: 50%;
   transition: all linear 0.3s;
@@ -4147,7 +4148,7 @@ button {
 }
 
 .tf__topbar_right .tf__other_language li a:hover {
-  background: #4582ff1f;
+  background: #003B691f;
   color: var(--colorBlue);
 }
 
@@ -4297,7 +4298,7 @@ button {
 .main_menu_2 .tf__droap_menu li a.active,
 .main_menu_2 .tf__droap_menu li a:hover {
   color: var(--colorBlue);
-  background: #4582ff14;
+  background: #003B6914;
 }
 
 .main_menu_2 .tf__droap_menu li a.active::after,
@@ -5472,7 +5473,7 @@ select.select_js.form-select {
 }
 
 .tf__activities_3 .tf__activities_item.orange {
-  border-color: #ff7f466b !important;
+  border-color: #F0D2646b !important;
 }
 
 .tf__activities_3 .tf__activities_item.blue {
@@ -6417,10 +6418,10 @@ section.tf__counter_3 {
   font-size: 20px;
 }
 .tf__scroll_btn.style-2 {
-  background-color: #4582ff;
+  background-color: #003B69;
 }
 .tf__scroll_btn.style-3 {
-  background-color: #00d6d3;
+  background-color: #CCAA00;
 }
 /* Loading Container Styles */
 .loading-container {
@@ -10176,3 +10177,4 @@ section.tf__counter_3 {
     font-size: 30px;
   }
 }
+

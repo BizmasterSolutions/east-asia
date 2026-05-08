@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/dist/ReactToastify.css";
 import "@/public/css/style.css";
+import "@/public/css/responsive.css";
 import { ToastContainer } from "react-toastify";
 
 export default function RootLayout({ children }) {
