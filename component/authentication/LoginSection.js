@@ -42,6 +42,24 @@ const LoginSection = () => {
                 Dont’t have an aceount ?{" "}
                 <Link href="/sign-up">Create Account</Link>
               </p>
+              <div style={{ marginTop: "20px", textAlign: "center", paddingTop: "20px", borderTop: "1px solid #e5e7eb" }}>
+                <p style={{ fontSize: "13px", color: "#6b7280", marginBottom: "10px" }}>Are you a student?</p>
+                <Link
+                  href="/student-portal/login"
+                  style={{
+                    display: "inline-block",
+                    padding: "10px 28px",
+                    background: "#c8a000",
+                    color: "#fff",
+                    borderRadius: "6px",
+                    textDecoration: "none",
+                    fontWeight: 600,
+                    fontSize: "14px",
+                  }}
+                >
+                  Go to Student Portal
+                </Link>
+              </div>
             </div>
           </div>
         </div>
