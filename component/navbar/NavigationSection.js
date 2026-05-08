@@ -68,9 +68,6 @@ const NavigationSection = ({ position, btnPosition, navRef }) => {
               <SubNavlink href="/sign-in">sign in</SubNavlink>
             </li>
             <li>
-              <SubNavlink href="/sign-up">sign up</SubNavlink>
-            </li>
-            <li>
               <SubNavlink href="/terms-condition">
                 terms and condition
               </SubNavlink>
