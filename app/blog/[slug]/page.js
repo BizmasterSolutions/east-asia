@@ -4,7 +4,7 @@ import ErrorSection from "@/component/error/ErrorSection";
 import Layout from "@/component/layout/Layout";
 import { blogData } from "@/data/Data";
 export const metadata = {
-  title: 'Eduor Blog Details Page',
+  title: 'East Asian Blog Details Page',
   description: 'Developed by Azizur Rahman',
 }
 export default function BlogDetails({params}) {

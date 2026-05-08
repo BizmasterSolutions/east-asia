@@ -11,7 +11,7 @@ const HeaderSection = () => {
               <Link href="/">
                 <img
                   src="images/logo2.png"
-                  alt="Eduor"
+                  alt="East Asian"
                   className="img-fluid w-100"
                 />
               </Link>
@@ -40,7 +40,7 @@ const HeaderSection = () => {
                   </div>
                   <div className="text">
                     <h4>E-maile</h4>
-                    <p>info@eduor.com</p>
+                    <p>info@East Asian.com</p>
                   </div>
                 </li>
               </ul>
