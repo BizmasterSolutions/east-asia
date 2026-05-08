@@ -1,48 +1,61 @@
 "use client";
-import { useEduorContext } from "@/context/EduorContext";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 const LoginForm = () => {
-  const { isValidEmail } = useEduorContext();
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    if (!password || !email) {
+    if (!username || !password) {
       toast.error("Please fill out all fields.", { position: "top-right" });
-    } else if (!isValidEmail(email)) {
-      toast.warning("Please provide a valid email address.", {
-        position: "top-right",
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const res = await fetch("/api/auth/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
       });
-    } else {
-      // If the form is successfully submitted, show a success toast
-      toast.success("Logged In successfully!", {
-        position: "top-right",
-      });
-      setPassword("");
-      setEmail("");
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.message || "Invalid credentials.", { position: "top-right" });
+        return;
+      }
+
+      toast.success("Welcome, Admin!", { position: "top-right" });
+      window.location.href = "/admin/dashboard";
+    } catch {
+      toast.error("Something went wrong. Please try again.", { position: "top-right" });
+    } finally {
+      setLoading(false);
     }
   };
+
   return (
     <form onSubmit={handleFormSubmit}>
       <div className="row">
         <div className="col-xl-12">
           <div className="tf__login_imput">
-            <label>email</label>
+            <label>Username</label>
             <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
         </div>
         <div className="col-xl-12">
           <div className="tf__login_imput">
-            <label>password</label>
+            <label>Password</label>
             <input
               type="password"
               placeholder="Password"
@@ -61,16 +74,16 @@ const LoginForm = () => {
                 id="flexCheckDefault"
               />
               <label className="form-check-label" htmlFor="flexCheckDefault">
-                Remeber Me
+                Remember Me
               </label>
             </div>
-            <a href="#">Forget Password ?</a>
+            <a href="#">Forgot Password?</a>
           </div>
         </div>
         <div className="col-xl-12">
           <div className="tf__login_imput">
-            <button type="submit" className="common_btn">
-              login
+            <button type="submit" className="common_btn" disabled={loading}>
+              {loading ? "Logging in..." : "Login"}
             </button>
           </div>
         </div>
