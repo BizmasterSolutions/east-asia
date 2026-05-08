@@ -21,7 +21,7 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-      <NavbarSection style="" logo="images/logo.png" />
+      <NavbarSection style="" logo="/Logo mod.png" />
       <BannerSection />
       <CategorySection />
       <AboutSection />

@@ -7,7 +7,7 @@ import ScrollToTopButton from "../utils/ScrollToTopButton";
 const Layout = ({ children }) => {
   return (
     <>
-      <NavbarSection style="" logo="/images/logo.png" />
+      <NavbarSection style="" logo="/Logo mod.png" />
       {children}
       <ScrollToTopButton style="" />
       <FooterSection />

@@ -40,10 +40,12 @@ const NavbarSection = ({ style, logo }) => {
         isHeaderFixed ? "menu_fix" : ""
       }`}
       ref={navMenuRef}
+      style={{ marginTop: "29px" }}
     >
       <div className="container">
         <Link className="navbar-brand" href="/">
           <img src={logo} alt="Eduor" className="img-fluid w-100" />
+          <img src="/Logo name.png" alt="Logo Name" className="img-fluid" style={{ marginTop: "15px" }} />
         </Link>
         {isMobileNavOpen ? (
           <button
