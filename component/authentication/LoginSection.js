@@ -42,23 +42,16 @@ const LoginSection = () => {
                 Dont’t have an aceount ?{" "}
                 <Link href="/sign-up">Create Account</Link>
               </p>
-              <div style={{ marginTop: "20px", textAlign: "center", paddingTop: "20px", borderTop: "1px solid #e5e7eb" }}>
-                <p style={{ fontSize: "13px", color: "#6b7280", marginBottom: "10px" }}>Are you a student?</p>
-                <Link
-                  href="/student-portal/login"
-                  style={{
-                    display: "inline-block",
-                    padding: "10px 28px",
-                    background: "#c8a000",
-                    color: "#fff",
-                    borderRadius: "6px",
-                    textDecoration: "none",
-                    fontWeight: 600,
-                    fontSize: "14px",
-                  }}
-                >
-                  Go to Student Portal
-                </Link>
+              <div style={{ marginTop: "20px", paddingTop: "20px", borderTop: "1px solid #e5e7eb" }}>
+                <p style={{ fontSize: "13px", color: "#6b7280", marginBottom: "12px", textAlign: "center" }}>Other portals</p>
+                <div style={{ display: "flex", gap: "10px" }}>
+                  <Link href="/student-portal/login" style={{ flex: 1, display: "block", padding: "10px", background: "#c8a000", color: "#fff", borderRadius: "6px", textDecoration: "none", fontWeight: 600, fontSize: "13px", textAlign: "center" }}>
+                    🎓 Student Portal
+                  </Link>
+                  <Link href="/parent-portal/login" style={{ flex: 1, display: "block", padding: "10px", background: "#0891b2", color: "#fff", borderRadius: "6px", textDecoration: "none", fontWeight: 600, fontSize: "13px", textAlign: "center" }}>
+                    👨‍👧 Parent Portal
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
