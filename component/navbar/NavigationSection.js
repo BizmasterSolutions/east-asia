@@ -21,12 +21,6 @@ const NavigationSection = ({ position, btnPosition, navRef }) => {
             <li>
               <SubNavlink href="/">home 1</SubNavlink>
             </li>
-            <li>
-              <SubNavlink href="/home-2">home 2</SubNavlink>
-            </li>
-            <li>
-              <SubNavlink href="/home-3">home 3</SubNavlink>
-            </li>
           </ul>
         </li>
         <li className="nav-item">
