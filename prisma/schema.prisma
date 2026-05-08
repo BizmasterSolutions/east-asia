@@ -1,0 +1,224 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── AUTH ────────────────────────────────────────────────────────────────────
+
+model Admin {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
+
+model Student {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  passwordHash String
+  fullName     String
+  grade        String
+  createdAt    DateTime @default(now())
+
+  marks           Mark[]
+  reportCards     ReportCard[]
+  attendance      Attendance[]
+  parentChildren  ParentChild[]
+}
+
+model Parent {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  passwordHash String
+  fullName     String
+  createdAt    DateTime @default(now())
+
+  children ParentChild[]
+}
+
+model ParentChild {
+  id        Int     @id @default(autoincrement())
+  parent    Parent  @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  parentId  Int
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentId Int
+
+  @@unique([parentId, studentId])
+}
+
+// ─── ACADEMICS ───────────────────────────────────────────────────────────────
+
+model Subject {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  marks Mark[]
+}
+
+model Mark {
+  id             Int     @id @default(autoincrement())
+  student        Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentId      Int
+  subject        Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  subjectId      Int
+  term           String
+  marks          Float
+  grade          String
+  teacherRemarks String?
+
+  @@unique([studentId, subjectId, term])
+}
+
+model ReportCard {
+  id         Int      @id @default(autoincrement())
+  student    Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentId  Int
+  term       String
+  filePath   String
+  uploadedAt DateTime @default(now())
+
+  @@unique([studentId, term])
+}
+
+model Attendance {
+  id        Int      @id @default(autoincrement())
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentId Int
+  date      DateTime @db.Date
+  status    String   // present | absent | late
+
+  @@unique([studentId, date])
+}
+
+model ExamSchedule {
+  id        Int      @id @default(autoincrement())
+  grade     String
+  examName  String
+  subject   String
+  examDate  DateTime @db.Date
+}
+
+// ─── STUDENT PORTAL ──────────────────────────────────────────────────────────
+
+model DownloadableFile {
+  id         Int      @id @default(autoincrement())
+  title      String
+  grade      String
+  category   String   // term-paper | mock | past | revision | timetable
+  filePath   String
+  uploadedAt DateTime @default(now())
+}
+
+// ─── HOME PAGE CONTENT ───────────────────────────────────────────────────────
+
+model Slideshow {
+  id        Int    @id @default(autoincrement())
+  imagePath String
+  caption   String?
+  sortOrder Int    @default(0)
+}
+
+model NewsItem {
+  id        Int      @id @default(autoincrement())
+  title     String
+  body      String
+  createdAt DateTime @default(now())
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  eventDate   DateTime @db.Date
+}
+
+model SuccessStory {
+  id          Int    @id @default(autoincrement())
+  studentName String
+  description String
+  imagePath   String?
+}
+
+model SchoolSetting {
+  key   String @id
+  value String
+}
+
+// ─── ABOUT PAGE ──────────────────────────────────────────────────────────────
+
+model Staff {
+  id        Int    @id @default(autoincrement())
+  name      String
+  role      String
+  photoPath String?
+  sortOrder Int    @default(0)
+}
+
+model Award {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String?
+  imagePath   String?
+}
+
+// ─── GALLERY ─────────────────────────────────────────────────────────────────
+
+model GalleryPhoto {
+  id         Int      @id @default(autoincrement())
+  imagePath  String
+  category   String   // events | sports | academic | arts | competitions | classroom
+  uploadedAt DateTime @default(now())
+}
+
+model GalleryVideo {
+  id         Int    @id @default(autoincrement())
+  youtubeUrl String
+  title      String
+}
+
+// ─── PROGRAMMES ──────────────────────────────────────────────────────────────
+
+model Programme {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  ageGroup    String
+  schedule    String
+  fee         Float
+  imagePath   String?
+}
+
+// ─── CONTACT & CAREERS ───────────────────────────────────────────────────────
+
+model Inquiry {
+  id          Int      @id @default(autoincrement())
+  name        String
+  phone       String
+  email       String
+  message     String
+  status      String   @default("pending") // pending | resolved
+  submittedAt DateTime @default(now())
+}
+
+model JobApplication {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String
+  cvPath      String
+  status      String   @default("new") // new | reviewed
+  submittedAt DateTime @default(now())
+}
+
+// ─── ANNOUNCEMENTS ───────────────────────────────────────────────────────────
+
+model Announcement {
+  id        Int      @id @default(autoincrement())
+  title     String
+  body      String
+  target    String   @default("all") // all | students | parents
+  createdAt DateTime @default(now())
+}
