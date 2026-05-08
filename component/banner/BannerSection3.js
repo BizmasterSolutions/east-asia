@@ -11,7 +11,7 @@ const BannerSection3 = () => {
         <div className="row">
           <div className="col-xl-8 col-md-10 col-lg-8">
             <div className="tf__banner_text wow fadeInUp">
-              <h5>Wellcome to Eduor!</h5>
+              <h5>Wellcome to East Asian!</h5>
               <h1>
                 We Are Best <span>Online</span> Courses Education.
               </h1>

@@ -33,7 +33,7 @@ const FooterSection2 = ({ style, logo }) => {
                 <div className="col-xl-3 col-md-7 col-lg-3">
                   <div className="tf__footer_logo_area">
                     <Link className="footer_logo" href="/">
-                      <img src={logo} alt="Eduor" className="img-fluid w-100" />
+                      <img src={logo} alt="East Asian" className="img-fluid w-100" />
                     </Link>
                     <p>
                       Nemo enim ipsam voluptate quia voluptas sit aspernatur aut
@@ -121,7 +121,7 @@ const FooterSection2 = ({ style, logo }) => {
 
                 <div className="col-12">
                   <div className="tf__copyright">
-                    <p>Copyright ©Eduor all rights reserved.</p>
+                    <p>Copyright ©East Asian all rights reserved.</p>
                     <ul className="d-flex flex-wrap">
                       <li>
                         <a href="#">Privacy policy</a>

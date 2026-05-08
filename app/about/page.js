@@ -7,7 +7,7 @@ import FaqSection from "@/component/faq/FaqSection";
 import Layout from "@/component/layout/Layout";
 import PopularServiceSection2 from "@/component/service/PopularServiceSection2";
 export const metadata = {
-  title: 'Eduor About Page',
+  title: 'East Asian About Page',
   description: 'Developed by Azizur Rahman',
 }
 export default function About() {

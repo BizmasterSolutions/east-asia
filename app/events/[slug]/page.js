@@ -4,7 +4,7 @@ import EventDetailSection from "@/component/event/EventDetailSection";
 import Layout from "@/component/layout/Layout";
 import { eventData } from "@/data/Data";
 export const metadata = {
-  title: 'Eduor Event Details Page',
+  title: 'East Asian Event Details Page',
   description: 'Developed by Azizur Rahman',
 }
 export default function EventDetails({params}) {

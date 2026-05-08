@@ -4,7 +4,7 @@ import CourseDetailSection from "@/component/course/CourseDetailSection";
 import { courseDataArray } from "@/data/Data";
 import ErrorSection from "@/component/error/ErrorSection";
 export const metadata = {
-  title: "Eduor Course Details Page",
+  title: "East Asian Course Details Page",
   description: "Developed by Azizur Rahman",
 };
 export default function CourseDetails({ params }) {

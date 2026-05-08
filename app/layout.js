@@ -1,3 +1,11 @@
+export const metadata = {
+  title: {
+    default: "East Asian International School",
+    template: "%s | East Asian International School",
+  },
+  description: "East Asian International School",
+};
+
 import { EduorProvider } from "@/context/EduorContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/public/css/all.min.css";

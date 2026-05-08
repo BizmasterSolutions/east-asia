@@ -12,7 +12,7 @@ const FooterSection = () => {
                 <Link className="footer_logo" href="/">
                   <img
                     src="/images/footer_logo.png"
-                    alt="Eduor"
+                    alt="East Asian"
                     className="img-fluid w-100"
                   />
                 </Link>
@@ -102,7 +102,7 @@ const FooterSection = () => {
           <div className="row">
             <div className="col-12">
               <div className="tf__copyright">
-                <p>Copyright ©Eduor all rights reserved.</p>
+                <p>Copyright ©East Asian all rights reserved.</p>
                 <ul className="d-flex flex-wrap">
                   <li>
                     <Link href="/privacy-policy">Privacy policy</Link>

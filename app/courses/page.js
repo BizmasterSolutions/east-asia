@@ -2,7 +2,7 @@ import BreadcrumbSection from "@/component/breadcrumb/BreadcrumbSection";
 import AllCourseSection from "@/component/course/AllCourseSection";
 import Layout from "@/component/layout/Layout";
 export const metadata = {
-  title: 'Eduor Courses Page',
+  title: 'East Asian Courses Page',
   description: 'Developed by Azizur Rahman',
 }
 export default function Courses() {
