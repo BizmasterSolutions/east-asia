@@ -27,37 +27,9 @@ export default async function AdminDashboard() {
     { title: "Open Vacancies", value: openVacancies, link: "/admin/careers", color: "#16a34a" },
   ];
 
-  const quickLinks = [
-    { label: "Students", href: "/admin/students" },
-    { label: "Parents", href: "/admin/parents" },
-    { label: "Academics", href: "/admin/academics" },
-    { label: "Inquiries", href: "/admin/inquiries" },
-    { label: "Careers", href: "/admin/careers" },
-    { label: "Gallery", href: "/admin/gallery" },
-    { label: "Announcements", href: "/admin/announcements" },
-    { label: "Settings", href: "/admin/settings" },
-  ];
-
   return (
     <div style={{ padding: "40px", fontFamily: "sans-serif" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <h1 style={{ fontSize: "28px", fontWeight: 700 }}>Admin Dashboard</h1>
-        <form action="/api/auth/admin/logout" method="POST">
-          <button
-            type="submit"
-            style={{
-              padding: "8px 20px",
-              background: "#ef4444",
-              color: "#fff",
-              border: "none",
-              borderRadius: "6px",
-              cursor: "pointer",
-            }}
-          >
-            Logout
-          </button>
-        </form>
-      </div>
+      <h1 style={{ fontSize: "28px", fontWeight: 700, marginBottom: "30px" }}>Dashboard</h1>
 
       {/* Overview Cards */}
       <div
@@ -65,7 +37,6 @@ export default async function AdminDashboard() {
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
           gap: "20px",
-          marginTop: "30px",
         }}
       >
         {cards.map((card) => (
@@ -92,31 +63,6 @@ export default async function AdminDashboard() {
             </h2>
           </Link>
         ))}
-      </div>
-
-      {/* Quick Links */}
-      <div style={{ marginTop: "40px" }}>
-        <h2 style={{ fontSize: "18px", fontWeight: 600, marginBottom: "16px" }}>Management Sections</h2>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
-          {quickLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              style={{
-                padding: "10px 22px",
-                background: "#f3f4f6",
-                borderRadius: "8px",
-                textDecoration: "none",
-                color: "#1f2937",
-                fontWeight: 500,
-                fontSize: "14px",
-                border: "1px solid #e5e7eb",
-              }}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
       </div>
     </div>
   );

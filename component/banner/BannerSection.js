@@ -3,26 +3,51 @@ import { useEduorContext } from "@/context/EduorContext";
 import Link from "next/link";
 import React from "react";
 
-const BannerSection = () => {
+const DEFAULTS = {
+  hero_subtitle: "Welcome to East Asian!",
+  hero_heading: "Students for a Brighter Future.",
+  hero_heading_highlight: "Brighter",
+  hero_description:
+    "East Asian International School provides a nurturing environment where students grow academically and personally.",
+  hero_cta_text: "Read More",
+  hero_cta_link: "/about",
+};
+
+const BannerSection = ({ hero = {} }) => {
   const { handleVideoShow } = useEduorContext();
+
+  const subtitle = hero.hero_subtitle || DEFAULTS.hero_subtitle;
+  const heading = hero.hero_heading || DEFAULTS.hero_heading;
+  const highlight = hero.hero_heading_highlight || DEFAULTS.hero_heading_highlight;
+  const description = hero.hero_description || DEFAULTS.hero_description;
+  const ctaText = hero.hero_cta_text || DEFAULTS.hero_cta_text;
+  const ctaLink = hero.hero_cta_link || DEFAULTS.hero_cta_link;
+
+  const headingParts = heading.includes(highlight)
+    ? heading.split(highlight)
+    : [heading, ""];
+
+  const bgStyle = hero.hero_bg_image
+    ? { backgroundImage: `url(${hero.hero_bg_image})` }
+    : {};
+
   return (
-    <section className="tf__banner">
+    <section className="tf__banner" style={bgStyle}>
       <div className="container">
         <div className="row">
           <div className="col-xl-7 col-lg-8">
             <div className="tf__banner_text wow fadeInUp">
-              <h5>Welcome to Eduon!</h5>
+              <h5>{subtitle}</h5>
               <h1>
-                Students for <span>Little</span> Education from.
+                {headingParts[0]}
+                {heading.includes(highlight) && <span>{highlight}</span>}
+                {headingParts[1]}
               </h1>
-              <p>
-                Our agency can only be as strong as our people & because of team
-                have designed game changing products.
-              </p>
+              <p>{description}</p>
               <ul className="d-flex flex-wrap align-items-center">
                 <li>
-                  <Link className="common_btn" href="/about">
-                    Read More
+                  <Link className="common_btn" href={ctaLink}>
+                    {ctaText}
                   </Link>
                 </li>
                 <li>
