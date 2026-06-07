@@ -9,12 +9,16 @@ const FooterSection = () => {
           <div className="row justify-content-between">
             <div className="col-xl-3 col-sm-10 col-md-7 col-lg-6">
               <div className="tf__footer_logo_area">
-                <Link className="footer_logo" href="/">
+                <Link className="footer_logo" href="/" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                   <img
-                    src="/images/footer_logo.png"
+                    src="/Logo mod.png"
                     alt="East Asian"
-                    className="img-fluid w-100"
+                    className="img-fluid"
+                    style={{ width: "50px", height: "auto" }}
                   />
+                  <span style={{ color: "#fff", fontSize: "22px", fontWeight: "700", letterSpacing: "1px" }}>
+                    East Asian
+                  </span>
                 </Link>
                 <p>
                   Nemo enim ipsam voluptate quia voluptas sit aspernatur aut
@@ -74,14 +78,14 @@ const FooterSection = () => {
             <div className="col-xl-3 col-sm-10 col-md-7 col-lg-col-lg-6">
               <div className="tf__footer_content xs_mt_30">
                 <h3>Our Contacts</h3>
-                <p>Adress: 27 Division St, Berakuti, NY 121102, USA</p>
+                <p>Adress: No 25 Sunethradevi Rd, Kohuwela, Nugegoda, Sri Lanka</p>
                 <p>
-                  <span> Phone: +8 1440 456 782</span>
-                  <span>Fax: +8 846512 456 788</span>
+                  <span> Phone: +94 77 88 81 558</span>
+                  <span>Phone: +94 11 28 54 838</span>
                 </p>
                 <p>
-                  <span>Email: example@mail.com </span>
-                  <span>Website: yourwebsite.com</span>
+                  <span>Email: east.asian@ymail.com </span>
+                  <span>Website: www.eastasian.lk</span>
                 </p>
               </div>
             </div>
