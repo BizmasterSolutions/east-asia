@@ -93,17 +93,23 @@ export function Msg({ msg }) {
 
 export function ImageUpload({ currentUrl, onUpload, label = "Image" }) {
   const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleFile = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
+    setError(null);
     setUploading(true);
     const fd = new FormData();
     fd.append("file", file);
+    if (currentUrl) fd.append("oldUrl", currentUrl);
     try {
       const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
       const data = await res.json();
       if (res.ok) onUpload(data.url);
+      else setError(data.message || "Upload failed.");
+    } catch {
+      setError("Upload failed. Please try again.");
     } finally {
       setUploading(false);
       e.target.value = "";
@@ -123,7 +129,22 @@ export function ImageUpload({ currentUrl, onUpload, label = "Image" }) {
         />
       )}
       <input type="file" accept="image/*" onChange={handleFile} disabled={uploading} style={{ fontSize: 13 }} />
-      {uploading && <span style={{ fontSize: 12, color: "#6b7280", marginLeft: 8 }}>Uploading…</span>}
+      {uploading && (
+        <span style={{ fontSize: 12, color: "#6b7280", marginLeft: 8 }}>Uploading…</span>
+      )}
+      {error && (
+        <div style={{
+          marginTop: 6,
+          padding: "7px 12px",
+          background: "#fef2f2",
+          border: "1px solid #fecaca",
+          borderRadius: 6,
+          color: "#dc2626",
+          fontSize: 13,
+        }}>
+          ⚠ {error}
+        </div>
+      )}
     </div>
   );
 }

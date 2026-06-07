@@ -689,8 +689,7 @@ button {
   margin-left: 50px;
 }
 
-.tf__upcoming_event::after,
-.tf__banner::after {
+.tf__upcoming_event::after {
   position: absolute;
   content: "";
   background: url(../images/banner_shape.png);
@@ -705,6 +704,10 @@ button {
   opacity: 0.5;
   animation: banner_animi_1 linear 4s infinite alternate;
   -webkit-animation: banner_animi_1 linear 4s infinite alternate;
+}
+
+.tf__banner::after {
+  display: none;
 }
 
 @keyframes banner_animi_1 {

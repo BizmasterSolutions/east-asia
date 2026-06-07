@@ -4,7 +4,8 @@ import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import NavigationSection from "./NavigationSection";
 
-const NavbarSection = ({ style, logo }) => {
+const NavbarSection = ({ style, logo, colors = {} }) => {
+  const { bgColor, textColor, linkColor } = colors;
   const {
     isHeaderFixed,
     handleMobileNavOpen,
@@ -35,12 +36,22 @@ const NavbarSection = ({ style, logo }) => {
     };
   }, [isMobileNavOpen, setIsMobileNavOpen]);
   return (
+    <>
+      {(bgColor || linkColor) && (
+        <style dangerouslySetInnerHTML={{ __html: `
+          .main_menu { ${bgColor ? `background-color: ${bgColor} !important;` : ""} }
+          .main_menu .nav-link, .main_menu .navbar-nav > li > a { ${linkColor ? `color: ${linkColor} !important;` : ""} }
+        ` }} />
+      )}
     <nav
       className={`navbar navbar-expand-lg main_menu ${style} ${
         isHeaderFixed ? "menu_fix" : ""
       }`}
       ref={navMenuRef}
-      style={{ marginTop: "29px" }}
+      style={{
+        marginTop: "29px",
+        ...(textColor && { color: textColor }),
+      }}
     >
       <div className="container">
         <Link className="navbar-brand" href="/">
@@ -72,6 +83,7 @@ const NavbarSection = ({ style, logo }) => {
         />
       </div>
     </nav>
+    </>
   );
 };
 

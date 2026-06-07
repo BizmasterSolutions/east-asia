@@ -3,33 +3,12 @@ import { cookies } from "next/headers";
 import { verifyToken } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 
-const HERO_KEYS = [
-  "hero_subtitle",
-  "hero_subtitle_color",
-  "hero_heading",
-  "hero_heading_color",
-  "hero_heading_highlight",
-  "hero_highlight_color",
-  "hero_description",
-  "hero_description_color",
-  "hero_cta_text",
-  "hero_cta_link",
-  "hero_bg_image",
-];
+const NAVBAR_KEYS = ["navbar_bg_color", "navbar_text_color", "navbar_link_color"];
 
-export const HERO_DEFAULTS = {
-  hero_subtitle: "Welcome to East Asian!",
-  hero_subtitle_color: "#ffffff",
-  hero_heading: "Students for a Brighter Future.",
-  hero_heading_color: "#ffffff",
-  hero_heading_highlight: "Brighter",
-  hero_highlight_color: "#f59e0b",
-  hero_description:
-    "East Asian International School provides a nurturing environment where students grow academically and personally.",
-  hero_description_color: "#ffffff",
-  hero_cta_text: "Read More",
-  hero_cta_link: "/about",
-  hero_bg_image: "",
+const NAVBAR_DEFAULTS = {
+  navbar_bg_color: "#ffffff",
+  navbar_text_color: "#222222",
+  navbar_link_color: "#222222",
 };
 
 export async function GET() {
@@ -40,15 +19,15 @@ export async function GET() {
     }
 
     const rows = await prisma.schoolSetting.findMany({
-      where: { key: { in: HERO_KEYS } },
+      where: { key: { in: NAVBAR_KEYS } },
     });
 
-    const data = { ...HERO_DEFAULTS };
+    const data = { ...NAVBAR_DEFAULTS };
     for (const row of rows) data[row.key] = row.value;
 
     return NextResponse.json(data);
   } catch (err) {
-    console.error("[home-content/hero GET]", err);
+    console.error("[home-content/navbar GET]", err);
     return NextResponse.json({ message: "Internal server error." }, { status: 500 });
   }
 }
@@ -63,7 +42,7 @@ export async function PUT(req) {
     const body = await req.json();
 
     await Promise.all(
-      HERO_KEYS.filter((key) => body[key] !== undefined).map((key) =>
+      NAVBAR_KEYS.filter((key) => body[key] !== undefined).map((key) =>
         prisma.schoolSetting.upsert({
           where: { key },
           create: { key, value: String(body[key]) },
@@ -72,9 +51,9 @@ export async function PUT(req) {
       )
     );
 
-    return NextResponse.json({ message: "Hero content updated successfully." });
+    return NextResponse.json({ message: "Navbar settings updated successfully." });
   } catch (err) {
-    console.error("[home-content/hero PUT]", err);
+    console.error("[home-content/navbar PUT]", err);
     return NextResponse.json({ message: "Internal server error." }, { status: 500 });
   }
 }

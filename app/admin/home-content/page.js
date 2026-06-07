@@ -8,16 +8,28 @@ import NewsTab from "@/component/admin/home-content/NewsTab";
 import EventsTab from "@/component/admin/home-content/EventsTab";
 import SocialTab from "@/component/admin/home-content/SocialTab";
 import StatsTab from "@/component/admin/home-content/StatsTab";
+import AboutTab from "@/component/admin/home-content/AboutTab";
+import CoursesTab from "@/component/admin/home-content/CoursesTab";
+import TestimonialsTab from "@/component/admin/home-content/TestimonialsTab";
+import ActivitiesTab from "@/component/admin/home-content/ActivitiesTab";
+import BlogTab from "@/component/admin/home-content/BlogTab";
+import NavbarTab from "@/component/admin/home-content/NavbarTab";
 
 const TABS = [
-  { id: "hero",      label: "Hero Banner",       icon: "fas fa-image" },
-  { id: "slideshow", label: "Slideshow",          icon: "fas fa-images" },
-  { id: "principal", label: "Principal's Note",   icon: "fas fa-user-tie" },
-  { id: "stories",   label: "Success Stories",    icon: "fas fa-star" },
-  { id: "news",      label: "News",               icon: "fas fa-newspaper" },
-  { id: "events",    label: "Events",             icon: "fas fa-calendar-alt" },
-  { id: "social",    label: "Social Links",       icon: "fas fa-share-alt" },
-  { id: "stats",     label: "School Stats",       icon: "fas fa-chart-bar" },
+  { id: "navbar",       label: "Navbar",                icon: "fas fa-bars" },
+  { id: "hero",         label: "Hero Banner",           icon: "fas fa-image" },
+  { id: "about",        label: "About Section",         icon: "fas fa-info-circle" },
+  { id: "courses",      label: "Advance Courses",       icon: "fas fa-graduation-cap" },
+  { id: "testimonials", label: "Testimonials",          icon: "fas fa-quote-left" },
+  { id: "activities",   label: "Activities",            icon: "fas fa-running" },
+  { id: "blog",         label: "Blog & News",           icon: "fas fa-newspaper" },
+  { id: "slideshow",    label: "Slideshow",             icon: "fas fa-images" },
+  { id: "principal",    label: "Principal's Note",      icon: "fas fa-user-tie" },
+  { id: "stories",      label: "Success Stories",       icon: "fas fa-star" },
+  { id: "news",         label: "News",                  icon: "fas fa-bullhorn" },
+  { id: "events",       label: "Events",                icon: "fas fa-calendar-alt" },
+  { id: "social",       label: "Social Links",          icon: "fas fa-share-alt" },
+  { id: "stats",        label: "School Stats",          icon: "fas fa-chart-bar" },
 ];
 
 export default function HomeContentPage() {
@@ -25,13 +37,11 @@ export default function HomeContentPage() {
 
   return (
     <div style={{ padding: "36px 40px", fontFamily: "sans-serif", minHeight: "100vh" }}>
-      {/* Page header */}
       <div style={{ marginBottom: 28 }}>
         <h1 style={{ fontSize: 22, fontWeight: 700, margin: "0 0 4px" }}>Home Page Content</h1>
         <p style={{ color: "#6b7280", fontSize: 14, margin: 0 }}>Manage everything shown on the public home page.</p>
       </div>
 
-      {/* Tab bar */}
       <div style={{
         display: "flex",
         flexWrap: "wrap",
@@ -70,16 +80,21 @@ export default function HomeContentPage() {
         })}
       </div>
 
-      {/* Tab content */}
       <div style={{ maxWidth: 760 }}>
-        {activeTab === "hero"      && <HeroTab />}
-        {activeTab === "slideshow" && <SlideshowTab />}
-        {activeTab === "principal" && <PrincipalTab />}
-        {activeTab === "stories"   && <StoriesTab />}
-        {activeTab === "news"      && <NewsTab />}
-        {activeTab === "events"    && <EventsTab />}
-        {activeTab === "social"    && <SocialTab />}
-        {activeTab === "stats"     && <StatsTab />}
+        {activeTab === "navbar"       && <NavbarTab />}
+        {activeTab === "hero"         && <HeroTab />}
+        {activeTab === "about"        && <AboutTab />}
+        {activeTab === "courses"      && <CoursesTab />}
+        {activeTab === "testimonials" && <TestimonialsTab />}
+        {activeTab === "activities"   && <ActivitiesTab />}
+        {activeTab === "blog"         && <BlogTab />}
+        {activeTab === "slideshow"    && <SlideshowTab />}
+        {activeTab === "principal"    && <PrincipalTab />}
+        {activeTab === "stories"      && <StoriesTab />}
+        {activeTab === "news"         && <NewsTab />}
+        {activeTab === "events"       && <EventsTab />}
+        {activeTab === "social"       && <SocialTab />}
+        {activeTab === "stats"        && <StatsTab />}
       </div>
     </div>
   );

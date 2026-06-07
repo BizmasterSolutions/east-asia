@@ -115,6 +115,35 @@ model DownloadableFile {
 
 // ─── HOME PAGE CONTENT ───────────────────────────────────────────────────────
 
+model CourseWork {
+  id        Int     @id @default(autoincrement())
+  title     String
+  desc      String
+  imagePath String?
+  color     String  @default("orange")
+  sortOrder Int     @default(0)
+}
+
+model Testimonial {
+  id          Int     @id @default(autoincrement())
+  name        String
+  designation String
+  description String
+  imagePath   String?
+}
+
+model BlogPost {
+  id            Int      @id @default(autoincrement())
+  title         String
+  slug          String   @unique
+  category      String
+  categoryColor String   @default("light_blue")
+  description   String
+  imagePath     String?
+  author        String?
+  publishedAt   DateTime @default(now())
+}
+
 model Slideshow {
   id        Int    @id @default(autoincrement())
   imagePath String

@@ -20,49 +20,81 @@ export default async function AdminDashboard() {
       prisma.jobApplication.count({ where: { status: "new" } }),
     ]);
 
-  const cards = [
-    { title: "Total Students", value: totalStudents, link: "/admin/students", color: "#4f46e5" },
-    { title: "Total Parents", value: totalParents, link: "/admin/parents", color: "#0891b2" },
-    { title: "Pending Inquiries", value: pendingInquiries, link: "/admin/inquiries", color: "#d97706" },
-    { title: "Open Vacancies", value: openVacancies, link: "/admin/careers", color: "#16a34a" },
+  const stats = [
+    {
+      title: "Total Students",
+      value: totalStudents,
+      href: "/admin/students",
+      icon: "fas fa-user-graduate",
+      gold: false,
+    },
+    {
+      title: "Total Parents",
+      value: totalParents,
+      href: "/admin/parents",
+      icon: "fas fa-users",
+      gold: false,
+    },
+    {
+      title: "Pending Inquiries",
+      value: pendingInquiries,
+      href: "/admin/inquiries",
+      icon: "fas fa-envelope",
+      gold: true,
+    },
+    {
+      title: "Open Vacancies",
+      value: openVacancies,
+      href: "/admin/careers",
+      icon: "fas fa-briefcase",
+      gold: false,
+    },
+  ];
+
+  const actions = [
+    { label: "Home Content", href: "/admin/home-content", icon: "fas fa-image" },
+    { label: "Inquiries", href: "/admin/inquiries", icon: "fas fa-envelope" },
+    { label: "Gallery", href: "/admin/gallery", icon: "fas fa-images" },
+    { label: "Announcements", href: "/admin/announcements", icon: "fas fa-bullhorn" },
+    { label: "Careers", href: "/admin/careers", icon: "fas fa-briefcase" },
   ];
 
   return (
-    <div style={{ padding: "40px", fontFamily: "sans-serif" }}>
-      <h1 style={{ fontSize: "28px", fontWeight: 700, marginBottom: "30px" }}>Dashboard</h1>
+    <div className="ea-dashboard">
+      <h1 className="ea-page-title">Dashboard</h1>
+      <p className="ea-page-subtitle">Welcome back, Admin. Here&apos;s a quick overview.</p>
 
-      {/* Overview Cards */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-          gap: "20px",
-        }}
-      >
-        {cards.map((card) => (
-          <Link
-            key={card.title}
-            href={card.link}
-            style={{
-              display: "block",
-              background: "#fff",
-              border: "1px solid #e5e7eb",
-              borderRadius: "10px",
-              padding: "24px",
-              textDecoration: "none",
-              color: "inherit",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.06)",
-              borderTop: `4px solid ${card.color}`,
-            }}
-          >
-            <p style={{ fontSize: "13px", color: "#6b7280", margin: 0, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-              {card.title}
+      {/* Stat Cards */}
+      <div className="ea-stat-grid">
+        {stats.map((s) => (
+          <Link key={s.title} href={s.href} className={`ea-stat-card${s.gold ? " gold" : ""}`}>
+            <div className="ea-stat-card-inner">
+              <div>
+                <p className="ea-stat-label">{s.title}</p>
+                <h2 className="ea-stat-value">{s.value}</h2>
+              </div>
+              <div className="ea-stat-icon">
+                <i className={s.icon} />
+              </div>
+            </div>
+            <p className="ea-stat-link">
+              View details <i className="fas fa-arrow-right" style={{ fontSize: 10 }} />
             </p>
-            <h2 style={{ fontSize: "36px", fontWeight: 700, margin: "8px 0 0", color: card.color }}>
-              {card.value}
-            </h2>
           </Link>
         ))}
+      </div>
+
+      {/* Quick Actions */}
+      <div className="ea-panel">
+        <h3 className="ea-panel-heading">Quick Actions</h3>
+        <div className="ea-action-row">
+          {actions.map((a) => (
+            <Link key={a.href} href={a.href} className="ea-action-btn">
+              <i className={a.icon} />
+              {a.label}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );

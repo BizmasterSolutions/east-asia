@@ -4,7 +4,12 @@ import { verifyToken } from "@/lib/auth";
 export async function middleware(req) {
   const { pathname } = req.nextUrl;
 
-  if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
+  if (pathname.startsWith("/admin/login")) {
+    const token = req.cookies.get("admin_token")?.value;
+    if (token && (await verifyToken(token))) {
+      return NextResponse.redirect(new URL("/admin/dashboard", req.url));
+    }
+  } else if (pathname.startsWith("/admin")) {
     const token = req.cookies.get("admin_token")?.value;
 
     if (!token || !(await verifyToken(token))) {
@@ -12,7 +17,9 @@ export async function middleware(req) {
     }
   }
 
-  return NextResponse.next();
+  const res = NextResponse.next();
+  res.headers.set("x-pathname", pathname);
+  return res;
 }
 
 export const config = {

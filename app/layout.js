@@ -19,12 +19,12 @@ import { ToastContainer } from "react-toastify";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <EduorProvider>
-        <body>
+      <body>
+        <EduorProvider>
           {children}
           <ToastContainer />
-        </body>
-      </EduorProvider>
+        </EduorProvider>
+      </body>
     </html>
   );
 }
