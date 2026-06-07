@@ -82,8 +82,7 @@ export default async function Home() {
       <EventSection section="tf__event mt_95" startIndex={0} endIndex={4} />
       <FaqSection img="images/faq_img.jpg" />
       <WorkSection heading={coursesHeading} items={courseItems} />
-      <TestimonialSection heading={testimonialsHeading} items={testimonialItems} />
-      <ActivitySection data={activityData} />
+<ActivitySection data={activityData} />
       <VideoSection />
       <BlogSection heading={blogHeading} items={blogItems} />
       <FooterSection />
