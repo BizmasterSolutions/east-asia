@@ -13,7 +13,7 @@ export default function GallerySection({ photos = [], videos = [] }) {
     : photos.filter((p) => p.category === activeCategory);
 
   return (
-    <section style={{ padding: "80px 0", minHeight: "60vh" }}>
+    <section style={{ padding: "140px 0 80px", minHeight: "60vh" }}>
       <div className="container">
         {/* Heading */}
         <div className="row">
