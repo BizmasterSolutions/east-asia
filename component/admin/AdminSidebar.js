@@ -31,6 +31,7 @@ const NAV = [
   {
     group: "Management",
     items: [
+      { label: "Events", href: "/admin/events", icon: "fas fa-calendar-alt" },
       { label: "Announcements", href: "/admin/announcements", icon: "fas fa-bullhorn" },
       { label: "Gallery", href: "/admin/gallery", icon: "fas fa-images" },
       { label: "Careers", href: "/admin/careers", icon: "fas fa-briefcase" },
@@ -49,7 +50,7 @@ export default function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="ea-admin-sidebar">
+    <aside className="ea-admin-sidebar" style={{ width: "255px", height: "100vh" }}>
       {/* Brand */}
       <div className="ea-sidebar-brand">
         <Link href="/admin/dashboard">

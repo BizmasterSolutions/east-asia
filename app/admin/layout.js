@@ -20,9 +20,14 @@ export default async function AdminLayout({ children }) {
   if (!isAuthenticated) return <>{children}</>;
 
   return (
-    <div className="ea-admin-shell">
-      <AdminSidebar />
-      <div className="ea-admin-main">
+    <div style={{ display: "flex", minHeight: "100vh", background: "#f0f2f5", fontFamily: "'Rubik', sans-serif" }}>
+      {/* Fixed sidebar */}
+      <div style={{ position: "fixed", top: 0, left: 0, width: "255px", height: "100vh", zIndex: 300, flexShrink: 0 }}>
+        <AdminSidebar />
+      </div>
+
+      {/* Main content pushed right of sidebar */}
+      <div style={{ marginLeft: "255px", flex: 1, minWidth: 0, display: "flex", flexDirection: "column", minHeight: "100vh" }}>
         <header className="ea-admin-header">
           <span className="ea-header-title">
             East Asian International School &mdash;{" "}
@@ -35,7 +40,7 @@ export default async function AdminLayout({ children }) {
             <span className="ea-header-username">Admin</span>
           </div>
         </header>
-        <div className="ea-admin-content">
+        <div style={{ flex: 1, padding: "36px 40px" }}>
           {children}
         </div>
       </div>

@@ -159,10 +159,18 @@ model NewsItem {
 }
 
 model Event {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String?
-  eventDate   DateTime @db.Date
+  id            Int      @id @default(autoincrement())
+  title         String
+  description   String?
+  eventDate     DateTime @db.Date
+  category      String   @default("School")
+  location      String   @default("")
+  time          String   @default("")
+  imagePath     String?
+  slug          String?  @unique
+  price         Float    @default(0)
+  organizerName String?
+  color         String   @default("blue")
 }
 
 model SuccessStory {

@@ -122,11 +122,9 @@ export function ImageUpload({ currentUrl, onUpload, label = "Image" }) {
         {label}
       </label>
       {currentUrl && (
-        <img
-          src={currentUrl}
-          alt="preview"
-          style={{ height: 90, borderRadius: 6, objectFit: "cover", display: "block", marginBottom: 8, border: "1px solid #e5e7eb" }}
-        />
+        <div style={{ width: 200, height: 130, borderRadius: 8, overflow: "hidden", marginBottom: 10, border: "1px solid #e5e7eb", background: "#f9fafb" }}>
+          <img src={currentUrl} alt="preview" />
+        </div>
       )}
       <input type="file" accept="image/*" onChange={handleFile} disabled={uploading} style={{ fontSize: 13 }} />
       {uploading && (
