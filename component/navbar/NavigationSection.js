@@ -44,15 +44,7 @@ const NavigationSection = ({ position, btnPosition, navRef }) => {
               <SubNavlink href="/events">event</SubNavlink>
             </li>
             <li>
-              <SubNavlink href="/events/outdoor-this-games">
-                event details
-              </SubNavlink>
-            </li>
-            <li>
               <SubNavlink href="/team">team</SubNavlink>
-            </li>
-            <li>
-              <SubNavlink href="/team/john-smith">team details </SubNavlink>
             </li>
             <li>
               <SubNavlink href="/faq">FAQs</SubNavlink>
