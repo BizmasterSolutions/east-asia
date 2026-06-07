@@ -1,4 +1,3 @@
-import BreadcrumbSection from "@/component/breadcrumb/BreadcrumbSection";
 import AllFaqSection from "@/component/faq/AllFaqSection";
 import Layout from "@/component/layout/Layout";
 export const metadata = {
@@ -8,7 +7,6 @@ export const metadata = {
 export default function Faq() {
     return (
         <Layout>
-            <BreadcrumbSection title='FAQ' header="FAQ"/>
             <AllFaqSection/>
         </Layout>
     )
