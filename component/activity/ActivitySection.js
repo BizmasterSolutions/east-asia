@@ -11,7 +11,7 @@ const ActivitySection = ({ data = {} }) => {
   const subtitle = data.activity_subtitle || "OUR Best ACTIVITIES";
   const heading = data.activity_heading || "We School Be Happy With Our Activities.";
   const description = data.activity_description || "Business tailored it design, management & support services business agency elit, sed do eiusmod tempor.";
-  const img = data.activity_img || "images/activities_img.jpg";
+  const img = data.activity_img || "/Untitled design.png";
 
   let items = DEFAULT_ITEMS;
   try {

@@ -15,7 +15,7 @@ export const ACTIVITY_DEFAULTS = {
   activity_subtitle: "OUR Best ACTIVITIES",
   activity_heading: "We School Be Happy With Our Activities.",
   activity_description: "Business tailored it design, management & support services business agency elit, sed do eiusmod tempor.",
-  activity_img: "images/activities_img.jpg",
+  activity_img: "Untitled design.png",
   activity_items: JSON.stringify([
     { icon: "fa fa-book", title: "Parenting Bill", color: "light_blue" },
     { icon: "fa fa-graduation-cap", title: "Engineering", color: "green" },

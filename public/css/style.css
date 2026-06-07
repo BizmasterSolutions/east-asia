@@ -2048,7 +2048,7 @@ button {
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
-  background-image: url(../images/video_bg.jpg);
+  background-image: url(/medium-shot-collage-kids.avif);
 }
 
 .tf__video_overlay {
