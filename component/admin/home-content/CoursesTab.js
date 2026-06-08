@@ -59,49 +59,70 @@ export default function CoursesTab() {
     <div>
       <Msg msg={msg} />
 
-      <SectionCard>
-        <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16, color: "#111827" }}>Section Heading</h3>
-        <Field label="Subtitle" name="courses_subtitle" value={heading.courses_subtitle} onChange={changeHeading} />
-        <Field label="Main Heading" name="courses_heading" value={heading.courses_heading} onChange={changeHeading} />
-        <button onClick={saveHeading} disabled={saving} style={btnPrimary}>{saving ? "Saving…" : "Save Heading"}</button>
-      </SectionCard>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "start" }}>
 
-      <SectionCard>
-        <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16, color: "#111827" }}>{editId ? "Edit Course Card" : "Add Course Card"}</h3>
-        <Field label="Title" name="title" value={form.title} onChange={changeForm} required />
-        <Field label="Description" name="desc" value={form.desc} onChange={changeForm} textarea required />
-        <ImageUpload label="Image" currentUrl={form.imagePath} onUpload={(url) => setForm((f) => ({ ...f, imagePath: url }))} />
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 18 }}>
-          <div>
-            <label style={{ display: "block", fontWeight: 600, fontSize: 13, marginBottom: 4, color: "#374151" }}>Color</label>
-            <select name="color" value={form.color} onChange={changeForm} style={inputStyle}>
-              {COLORS.map((c) => <option key={c} value={c}>{c}</option>)}
-            </select>
-          </div>
-          <Field label="Sort Order" name="sortOrder" value={form.sortOrder} onChange={changeForm} type="number" />
-        </div>
-        <div style={{ display: "flex", gap: 8 }}>
-          <button onClick={saveItem} disabled={saving} style={btnPrimary}>{saving ? "Saving…" : editId ? "Update" : "Add Card"}</button>
-          {editId && <button onClick={cancelEdit} style={btnSecondary}>Cancel</button>}
-        </div>
-      </SectionCard>
+        {/* ── LEFT: heading + form ── */}
+        <div>
+          <SectionCard>
+            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16, color: "#111827" }}>Section Heading</h3>
+            <Field label="Subtitle" name="courses_subtitle" value={heading.courses_subtitle} onChange={changeHeading} />
+            <Field label="Main Heading" name="courses_heading" value={heading.courses_heading} onChange={changeHeading} />
+            <button onClick={saveHeading} disabled={saving} style={btnPrimary}>{saving ? "Saving…" : "Save Heading"}</button>
+          </SectionCard>
 
-      <SectionCard>
-        <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16, color: "#111827" }}>Course Cards ({items.length})</h3>
-        {items.length === 0 && <p style={{ color: "#6b7280", fontSize: 13 }}>No course cards yet. Add one above.</p>}
-        {items.map((item) => (
-          <div key={item.id} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 0", borderBottom: "1px solid #f3f4f6" }}>
-            {item.imagePath && <img src={item.imagePath} alt="" style={{ width: 56, height: 42, objectFit: "cover", borderRadius: 4 }} />}
-            <div style={{ flex: 1 }}>
-              <div style={{ fontWeight: 600, fontSize: 14 }}>{item.title}</div>
-              <div style={{ fontSize: 12, color: "#6b7280" }}>{item.desc.slice(0, 60)}…</div>
-              <span style={{ fontSize: 11, background: "#f3f4f6", borderRadius: 4, padding: "1px 6px", color: "#374151" }}>{item.color} · order {item.sortOrder}</span>
+          <SectionCard>
+            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16, color: "#111827" }}>{editId ? "Edit Course Card" : "Add Course Card"}</h3>
+            <Field label="Title" name="title" value={form.title} onChange={changeForm} required />
+            <Field label="Description" name="desc" value={form.desc} onChange={changeForm} textarea required />
+            <ImageUpload label="Image" currentUrl={form.imagePath} onUpload={(url) => setForm((f) => ({ ...f, imagePath: url }))} />
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 18 }}>
+              <div>
+                <label style={{ display: "block", fontWeight: 600, fontSize: 13, marginBottom: 4, color: "#374151" }}>Color</label>
+                <select name="color" value={form.color} onChange={changeForm} style={inputStyle}>
+                  {COLORS.map((c) => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </div>
+              <Field label="Sort Order" name="sortOrder" value={form.sortOrder} onChange={changeForm} type="number" />
             </div>
-            <button onClick={() => startEdit(item)} style={btnSecondary}>Edit</button>
-            <button onClick={() => remove(item.id)} style={btnDanger}>Delete</button>
-          </div>
-        ))}
-      </SectionCard>
+            <div style={{ display: "flex", gap: 8 }}>
+              <button onClick={saveItem} disabled={saving} style={btnPrimary}>{saving ? "Saving…" : editId ? "Update" : "Add Card"}</button>
+              {editId && <button onClick={cancelEdit} style={btnSecondary}>Cancel</button>}
+            </div>
+          </SectionCard>
+        </div>
+
+        {/* ── RIGHT: course cards list ── */}
+        <div>
+          <SectionCard>
+            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16, color: "#111827" }}>
+              Course Cards ({items.length})
+            </h3>
+            {items.length === 0 && (
+              <p style={{ color: "#6b7280", fontSize: 13 }}>No course cards yet. Add one on the left.</p>
+            )}
+            {items.map((item) => (
+              <div key={item.id} style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 0", borderBottom: "1px solid #f3f4f6" }}>
+                <div style={{ width: 110, height: 80, flexShrink: 0, borderRadius: 8, overflow: "hidden", background: "#f3f4f6" }}>
+                  {item.imagePath
+                    ? <img src={item.imagePath} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                    : <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", color: "#9ca3af", fontSize: 12 }}>No img</div>
+                  }
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontWeight: 700, fontSize: 15, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginBottom: 4 }}>{item.title}</div>
+                  <div style={{ fontSize: 13, color: "#6b7280", overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>{item.desc}</div>
+                  <span style={{ display: "inline-block", marginTop: 6, fontSize: 11, background: "#f3f4f6", borderRadius: 4, padding: "2px 8px", color: "#374151" }}>{item.color} · order {item.sortOrder}</span>
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 6, flexShrink: 0 }}>
+                  <button onClick={() => startEdit(item)} style={btnSecondary}>Edit</button>
+                  <button onClick={() => remove(item.id)} style={btnDanger}>Delete</button>
+                </div>
+              </div>
+            ))}
+          </SectionCard>
+        </div>
+
+      </div>
     </div>
   );
 }

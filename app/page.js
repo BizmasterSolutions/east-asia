@@ -14,6 +14,8 @@ import VideoSection from "@/component/video/VideoSection";
 import WorkSection from "@/component/work/WorkSection";
 import prisma from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "East Asian Home Page 1",
   description: "Developed by Azizur Rahman",
@@ -26,7 +28,7 @@ const SETTING_KEYS = [
   "about_subtitle", "about_heading", "about_description", "about_bullets",
   "about_cta_link", "about_main_img", "about_top_img", "about_top_heading",
   "about_top_description", "about_stat_number", "about_stat_label",
-  "courses_subtitle", "courses_heading",
+  "courses_subtitle", "courses_heading", "courses_description",
   "testimonial_subtitle", "testimonial_heading",
   "activity_subtitle", "activity_heading", "activity_description", "activity_img", "activity_items",
   "blog_subtitle", "blog_heading",
@@ -58,7 +60,7 @@ export default async function Home() {
       .map((k) => [k, settings[k]])
   );
 
-  const coursesHeading = { courses_subtitle: settings.courses_subtitle, courses_heading: settings.courses_heading };
+  const coursesHeading = { courses_subtitle: settings.courses_subtitle, courses_heading: settings.courses_heading, courses_description: settings.courses_description };
   const testimonialsHeading = { testimonial_subtitle: settings.testimonial_subtitle, testimonial_heading: settings.testimonial_heading };
   const blogHeading = { blog_subtitle: settings.blog_subtitle, blog_heading: settings.blog_heading };
 

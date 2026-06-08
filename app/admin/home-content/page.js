@@ -80,7 +80,7 @@ export default function HomeContentPage() {
         })}
       </div>
 
-      <div style={{ maxWidth: 760 }}>
+      <div style={{ maxWidth: ["courses", "blog"].includes(activeTab) ? 1200 : 760 }}>
         {activeTab === "navbar"       && <NavbarTab />}
         {activeTab === "hero"         && <HeroTab />}
         {activeTab === "about"        && <AboutTab />}

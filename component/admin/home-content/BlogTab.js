@@ -69,73 +69,79 @@ export default function BlogTab() {
     <div>
       <Msg msg={msg} />
 
-      <SectionCard>
-        <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16, color: "#111827" }}>Section Heading</h3>
-        <Field label="Subtitle" name="blog_subtitle" value={heading.blog_subtitle} onChange={changeHeading} />
-        <Field label="Main Heading" name="blog_heading" value={heading.blog_heading} onChange={changeHeading} />
-        <button onClick={saveHeading} disabled={saving} style={btnPrimary}>{saving ? "Saving…" : "Save Heading"}</button>
-      </SectionCard>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "start" }}>
 
-      <SectionCard>
-        <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16, color: "#111827" }}>{editId ? "Edit Blog Post" : "Add Blog Post"}</h3>
-        <Field label="Title" name="title" value={form.title} onChange={changeForm} required />
-        <Field label="Slug (URL)" name="slug" value={form.slug} onChange={changeForm} hint="Auto-generated from title. Edit if needed." />
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 18 }}>
-          <Field label="Category" name="category" value={form.category} onChange={changeForm} placeholder="e.g. design, technology" required />
-          <div>
-            <label style={{ display: "block", fontWeight: 600, fontSize: 13, marginBottom: 4, color: "#374151" }}>Category Color</label>
-            <select name="categoryColor" value={form.categoryColor} onChange={changeForm} style={inputStyle}>
-              {COLORS.map((c) => <option key={c} value={c}>{c}</option>)}
-            </select>
-          </div>
-        </div>
-        <Field label="Description" name="description" value={form.description} onChange={changeForm} textarea required />
-        <Field label="Author" name="author" value={form.author} onChange={changeForm} placeholder="e.g. John Doe" />
-        <ImageUpload label="Cover Image" currentUrl={form.imagePath} onUpload={(url) => setForm((f) => ({ ...f, imagePath: url }))} />
-        <div style={{ display: "flex", gap: 8 }}>
-          <button onClick={saveItem} disabled={saving} style={btnPrimary}>{saving ? "Saving…" : editId ? "Update" : "Add Post"}</button>
-          {editId && <button onClick={cancelEdit} style={btnSecondary}>Cancel</button>}
-        </div>
-      </SectionCard>
+        {/* ── LEFT: heading + form ── */}
+        <div>
+          <SectionCard>
+            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16, color: "#111827" }}>Section Heading</h3>
+            <Field label="Subtitle" name="blog_subtitle" value={heading.blog_subtitle} onChange={changeHeading} />
+            <Field label="Main Heading" name="blog_heading" value={heading.blog_heading} onChange={changeHeading} />
+            <button onClick={saveHeading} disabled={saving} style={btnPrimary}>{saving ? "Saving…" : "Save Heading"}</button>
+          </SectionCard>
 
-      <SectionCard>
-        <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16, color: "#111827" }}>Blog Posts ({items.length})</h3>
-        {items.length === 0 && <p style={{ color: "#6b7280", fontSize: 13 }}>No posts yet. Add one above.</p>}
-        {items.map((item) => (
-          <div key={item.id} style={{ display: "flex", alignItems: "center", gap: 14, padding: "12px 0", borderBottom: "1px solid #f3f4f6" }}>
-            {/* Thumbnail */}
-            <div style={{ flexShrink: 0, width: 80, height: 56, borderRadius: 6, overflow: "hidden", background: "#f3f4f6" }}>
-              {item.imagePath
-                ? <img src={item.imagePath} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-                : <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <i className="fas fa-image" style={{ color: "#d1d5db", fontSize: 20 }} />
+          <SectionCard>
+            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16, color: "#111827" }}>{editId ? "Edit Blog Post" : "Add Blog Post"}</h3>
+            <Field label="Title" name="title" value={form.title} onChange={changeForm} required />
+            <Field label="Slug (URL)" name="slug" value={form.slug} onChange={changeForm} hint="Auto-generated from title. Edit if needed." />
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 18 }}>
+              <Field label="Category" name="category" value={form.category} onChange={changeForm} placeholder="e.g. design, technology" required />
+              <div>
+                <label style={{ display: "block", fontWeight: 600, fontSize: 13, marginBottom: 4, color: "#374151" }}>Category Color</label>
+                <select name="categoryColor" value={form.categoryColor} onChange={changeForm} style={inputStyle}>
+                  {COLORS.map((c) => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </div>
+            </div>
+            <Field label="Description" name="description" value={form.description} onChange={changeForm} textarea required />
+            <Field label="Author" name="author" value={form.author} onChange={changeForm} placeholder="e.g. John Doe" />
+            <ImageUpload label="Cover Image" currentUrl={form.imagePath} onUpload={(url) => setForm((f) => ({ ...f, imagePath: url }))} />
+            <div style={{ display: "flex", gap: 8 }}>
+              <button onClick={saveItem} disabled={saving} style={btnPrimary}>{saving ? "Saving…" : editId ? "Update" : "Add Post"}</button>
+              {editId && <button onClick={cancelEdit} style={btnSecondary}>Cancel</button>}
+            </div>
+          </SectionCard>
+        </div>
+
+        {/* ── RIGHT: blog posts list ── */}
+        <div>
+          <SectionCard>
+            <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16, color: "#111827" }}>Blog Posts ({items.length})</h3>
+            {items.length === 0 && <p style={{ color: "#6b7280", fontSize: 13 }}>No posts yet. Add one on the left.</p>}
+            {items.map((item) => (
+              <div key={item.id} style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 0", borderBottom: "1px solid #f3f4f6" }}>
+                <div style={{ flexShrink: 0, width: 110, height: 80, borderRadius: 8, overflow: "hidden", background: "#f3f4f6" }}>
+                  {item.imagePath
+                    ? <img src={item.imagePath} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                    : <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                        <i className="fas fa-image" style={{ color: "#d1d5db", fontSize: 24 }} />
+                      </div>
+                  }
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontWeight: 700, fontSize: 15, color: "#111827", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginBottom: 4 }}>
+                    {item.title}
                   </div>
-              }
-            </div>
-
-            {/* Info */}
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontWeight: 600, fontSize: 14, color: "#111827", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                {item.title}
+                  <div style={{ fontSize: 13, color: "#6b7280", overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", marginBottom: 6 }}>
+                    {item.description}
+                  </div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+                    <span style={{ background: "#ede9fe", color: "#6d28d9", borderRadius: 4, padding: "2px 8px", fontSize: 11, fontWeight: 600 }}>
+                      {item.category}
+                    </span>
+                    {item.author && <span style={{ fontSize: 12, color: "#6b7280" }}>by {item.author}</span>}
+                  </div>
+                </div>
+                <div style={{ flexShrink: 0, display: "flex", flexDirection: "column", gap: 6 }}>
+                  <button onClick={() => startEdit(item)} style={btnSecondary}>Edit</button>
+                  <button onClick={() => remove(item.id)} style={btnDanger}>Delete</button>
+                </div>
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 4, flexWrap: "wrap" }}>
-                <span style={{ background: "#ede9fe", color: "#6d28d9", borderRadius: 4, padding: "1px 8px", fontSize: 11, fontWeight: 600 }}>
-                  {item.category}
-                </span>
-                {item.author && (
-                  <span style={{ fontSize: 12, color: "#6b7280" }}>by {item.author}</span>
-                )}
-              </div>
-            </div>
+            ))}
+          </SectionCard>
+        </div>
 
-            {/* Actions */}
-            <div style={{ flexShrink: 0, display: "flex", gap: 6 }}>
-              <button onClick={() => startEdit(item)} style={btnSecondary}>Edit</button>
-              <button onClick={() => remove(item.id)} style={btnDanger}>Delete</button>
-            </div>
-          </div>
-        ))}
-      </SectionCard>
+      </div>
     </div>
   );
 }
