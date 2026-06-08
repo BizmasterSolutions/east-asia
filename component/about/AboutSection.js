@@ -25,8 +25,8 @@ const AboutSection = ({ data = {} }) => {
         <div className="tf__about_top wow fadeInUp">
           <div className="row">
             <div className="col-xl-5 col-lg-5">
-              <div className="tf__about_top_img">
-                <img src={about_top_img} alt="about" className="img-fluid w-100" />
+              <div className="tf__about_top_img" style={{ marginLeft: "90px" }}>
+                <img src="/4.png" alt="about" className="img-fluid w-100" style={{ transform: "scale(1.15)", transformOrigin: "center center" }} />
               </div>
             </div>
             <div className="col-xl-7 col-lg-7">
