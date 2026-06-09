@@ -72,7 +72,7 @@ export default async function Home() {
       <CategorySection />
       <AboutSection />
       <EventSection section="tf__event mt_95" startIndex={0} endIndex={4} />
-      <FaqSection img="images/faq_img.jpg" />
+      <FaqSection img="/question-mark-icon-thinking-solution.avif" />
       <WorkSection heading={coursesHeading} items={courseItems} />
 <ActivitySection data={activityData} />
       <VideoSection />
