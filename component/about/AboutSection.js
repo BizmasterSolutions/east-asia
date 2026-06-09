@@ -8,7 +8,7 @@ const AboutSection = ({ data = {} }) => {
     about_description = "Business tailored it design, management & support services business agency elit, sed do eiusmod tempor.",
     about_bullets = '["Business school\'s Institut constructivism.","We give management school best.","Media in this school solution.","Business school\'s Institut constructivism.","We give management school best."]',
     about_cta_link = "/about",
-    about_main_img = "images/about_img.png",
+    about_main_img = "/question-mark-icon-thinking-solution.avif",
     about_top_img = "images/about_top_img.jpg",
     about_top_heading = "Study Off Flexibly",
     about_top_description = "We can provide you with a reliable handyan in Please input an email address down below school.",
