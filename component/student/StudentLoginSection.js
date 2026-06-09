@@ -39,7 +39,7 @@ const StudentLoginSection = () => {
 
   return (
     <>
-      <style>{`
+      <style suppressHydrationWarning>{`
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         .spl-page {
@@ -56,62 +56,26 @@ const StudentLoginSection = () => {
           flex-direction: column;
           justify-content: flex-end;
           padding: 0 44px 48px;
-          background:
-            radial-gradient(ellipse at 50% 60%, rgba(30,90,220,0.45) 0%, transparent 55%),
-            radial-gradient(ellipse at 15% 20%, rgba(20,60,160,0.35) 0%, transparent 45%),
-            radial-gradient(ellipse at 85% 10%, rgba(10,30,100,0.25) 0%, transparent 40%),
-            linear-gradient(175deg, #0c1e52 0%, #06122e 50%, #020a1e 100%);
         }
-
-        .spl-left::before {
-          content: "";
-          position: absolute; inset: 0; z-index: 0;
-          background-image: radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px);
-          background-size: 24px 24px;
-          pointer-events: none;
+        .spl-left-top {
+          position: relative; z-index: 2;
+          margin-bottom: auto;
+          padding-top: 32px;
         }
-
-        .spl-left::after {
-          content: "";
-          position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
-          height: 48%;
-          background: linear-gradient(
-            to top,
-            rgba(2,10,30,1.0) 0%,
-            rgba(2,10,30,0.96) 25%,
-            rgba(2,10,30,0.70) 55%,
-            transparent 100%
-          );
-          pointer-events: none;
+        .spl-logo {
+          width: 80px; height: 80px;
+          position: relative;
         }
-
-        .spl-left-center {
+        .spl-left-overlay {
           position: absolute;
-          top: 0; left: 0; right: 0; bottom: 0;
+          inset: 0;
+          background:
+            radial-gradient(ellipse 80% 75% at 50% 55%, transparent 30%, rgba(0,0,0,0.92) 100%),
+            linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 40%);
           z-index: 1;
         }
-        .spl-crest-glow {
-          position: relative;
-          width: 100%;
-          height: 100%;
-        }
-        .spl-crest-glow::before {
-          content: "";
-          position: absolute;
-          bottom: 15%; left: 50%;
-          transform: translateX(-50%);
-          width: 85%; height: 65%;
-          border-radius: 50%;
-          background: radial-gradient(circle,
-            rgba(60,110,255,0.22) 0%,
-            rgba(30,60,180,0.10) 50%,
-            transparent 72%);
-          pointer-events: none;
-          z-index: 0;
-        }
-
         .spl-left-bottom {
-          position: relative; z-index: 3;
+          position: relative; z-index: 2;
         }
         .spl-badge {
           display: inline-flex; align-items: center; gap: 7px;
@@ -369,22 +333,12 @@ const StudentLoginSection = () => {
       <div className="spl-page">
 
         {/* ── LEFT PANEL ── */}
-        <div className="spl-left">
-          <div className="spl-left-center">
-            <div className="spl-crest-glow">
-              <Image
-                src="/Untitled design (3).png"
-                alt="East Asian Student"
-                fill
-                sizes="44vw"
-                style={{
-                  objectFit: "contain",
-                  objectPosition: "center 85%",
-                  filter: "drop-shadow(0 10px 40px rgba(10,40,140,0.45))",
-                  zIndex: 1,
-                }}
-                priority
-              />
+        <div className="spl-left" style={{ backgroundImage: "url('/young-schoolgirl-eyeglasses-holding-her-books-looks-tired-bored.avif')", backgroundSize: "cover", backgroundPosition: "center top" }}>
+          <div className="spl-left-overlay" />
+
+          <div className="spl-left-top">
+            <div className="spl-logo">
+              <Image src="/Logo.png" alt="East Asian Logo" fill style={{ objectFit: "contain" }} />
             </div>
           </div>
 
@@ -399,20 +353,6 @@ const StudentLoginSection = () => {
               School
             </h2>
             <div className="spl-accent-line" />
-            <div className="spl-stats">
-              <div>
-                <div className="spl-stat-num">2,400+</div>
-                <div className="spl-stat-lbl">Students</div>
-              </div>
-              <div>
-                <div className="spl-stat-num">180+</div>
-                <div className="spl-stat-lbl">Faculty</div>
-              </div>
-              <div>
-                <div className="spl-stat-num">50+</div>
-                <div className="spl-stat-lbl">Countries</div>
-              </div>
-            </div>
           </div>
         </div>
 

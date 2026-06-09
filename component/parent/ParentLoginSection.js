@@ -54,63 +54,29 @@ export default function ParentLoginSection() {
           overflow: hidden;
           display: flex;
           flex-direction: column;
-          justify-content: flex-end;
-          padding: 0 44px 48px;
-          background:
-            radial-gradient(ellipse at 50% 60%, rgba(30,90,220,0.45) 0%, transparent 55%),
-            radial-gradient(ellipse at 15% 20%, rgba(20,60,160,0.35) 0%, transparent 45%),
-            radial-gradient(ellipse at 85% 10%, rgba(10,30,100,0.25) 0%, transparent 40%),
-            linear-gradient(175deg, #0c1e52 0%, #06122e 50%, #020a1e 100%);
+          justify-content: space-between;
+          padding: 32px 44px 48px;
         }
-
-        .ppl-left::before {
-          content: "";
-          position: absolute; inset: 0; z-index: 0;
-          background-image: radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px);
-          background-size: 24px 24px;
-          pointer-events: none;
-        }
-
-        .ppl-left::after {
-          content: "";
-          position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
-          height: 48%;
+        .ppl-left-overlay {
+          position: absolute;
+          inset: 0;
           background: linear-gradient(
             to top,
-            rgba(2,10,30,1.0) 0%,
-            rgba(2,10,30,0.96) 25%,
-            rgba(2,10,30,0.70) 55%,
+            rgba(0,0,0,0.78) 0%,
+            rgba(0,0,0,0.35) 45%,
+            rgba(0,0,0,0.08) 75%,
             transparent 100%
           );
-          pointer-events: none;
-        }
-
-        .ppl-left-center {
-          position: absolute;
-          top: 0; left: 0; right: 0; bottom: 0;
           z-index: 1;
         }
-        .ppl-crest-glow {
+        .ppl-left-top {
+          position: relative; z-index: 2;
+        }
+        .ppl-logo {
+          width: 80px; height: 80px;
           position: relative;
-          width: 100%;
-          height: 100%;
         }
-        .ppl-crest-glow::before {
-          content: "";
-          position: absolute;
-          bottom: 15%; left: 50%;
-          transform: translateX(-50%);
-          width: 85%; height: 65%;
-          border-radius: 50%;
-          background: radial-gradient(circle,
-            rgba(60,110,255,0.22) 0%,
-            rgba(30,60,180,0.10) 50%,
-            transparent 72%);
-          pointer-events: none;
-          z-index: 0;
-        }
-
-        .ppl-left-bottom { position: relative; z-index: 3; }
+        .ppl-left-bottom { position: relative; z-index: 2; }
         .ppl-badge {
           display: inline-flex; align-items: center; gap: 7px;
           background: rgba(240,210,100,0.14);
@@ -365,22 +331,12 @@ export default function ParentLoginSection() {
       <div className="ppl-page">
 
         {/* ── LEFT PANEL ── */}
-        <div className="ppl-left">
-          <div className="ppl-left-center">
-            <div className="ppl-crest-glow">
-              <Image
-                src="/Untitled design (3).png"
-                alt="East Asian Student"
-                fill
-                sizes="44vw"
-                style={{
-                  objectFit: "contain",
-                  objectPosition: "center 85%",
-                  filter: "drop-shadow(0 10px 40px rgba(10,40,140,0.45))",
-                  zIndex: 1,
-                }}
-                priority
-              />
+        <div className="ppl-left" style={{ backgroundImage: "url('/cute-black-hair-child-female-daughter-homework-laugh-together-with-parent-living-room-house-concept.avif')", backgroundSize: "cover", backgroundPosition: "center top" }}>
+          <div className="ppl-left-overlay" />
+
+          <div className="ppl-left-top">
+            <div className="ppl-logo">
+              <Image src="/Logo.png" alt="East Asian Logo" fill style={{ objectFit: "contain" }} />
             </div>
           </div>
 
@@ -395,20 +351,6 @@ export default function ParentLoginSection() {
               School
             </h2>
             <div className="ppl-accent-line" />
-            <div className="ppl-stats">
-              <div>
-                <div className="ppl-stat-num">2,400+</div>
-                <div className="ppl-stat-lbl">Students</div>
-              </div>
-              <div>
-                <div className="ppl-stat-num">180+</div>
-                <div className="ppl-stat-lbl">Faculty</div>
-              </div>
-              <div>
-                <div className="ppl-stat-num">50+</div>
-                <div className="ppl-stat-lbl">Countries</div>
-              </div>
-            </div>
           </div>
         </div>
 
