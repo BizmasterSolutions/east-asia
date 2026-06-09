@@ -28,6 +28,7 @@ model Student {
   reportCards     ReportCard[]
   attendance      Attendance[]
   parentChildren  ParentChild[]
+  enrollments     StudentSubject[]
 }
 
 model Parent {
@@ -56,7 +57,18 @@ model Subject {
   id   Int    @id @default(autoincrement())
   name String @unique
 
-  marks Mark[]
+  marks       Mark[]
+  enrollments StudentSubject[]
+}
+
+model StudentSubject {
+  id        Int     @id @default(autoincrement())
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentId Int
+  subject   Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  subjectId Int
+
+  @@unique([studentId, subjectId])
 }
 
 model Mark {

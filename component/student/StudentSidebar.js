@@ -1,15 +1,20 @@
 "use client";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 
+// type: "anchor" = scroll within dashboard, "page" = navigate to a route
 const NAV = [
-  { id: "overview", icon: "▦", label: "Overview" },
-  { id: "notices", icon: "📢", label: "Notices Board" },
-  { id: "exams", icon: "🗓️", label: "Exam Schedule" },
-  { id: "downloads", icon: "📥", label: "Download Centre" },
+  { id: "overview",  icon: "▦",  label: "Overview",       type: "anchor" },
+  { id: "results",   icon: "📊", label: "My Results",      type: "page", href: "/student-portal/results" },
+  { id: "notices",   icon: "📢", label: "Notices Board",   type: "anchor" },
+  { id: "exams",     icon: "🗓️", label: "Exam Schedule",   type: "anchor" },
+  { id: "downloads", icon: "📥", label: "Download Centre", type: "anchor" },
 ];
 
 export default function StudentSidebar({ fullName, grade }) {
+  const pathname = usePathname();
+  const onDashboard = pathname === "/student-portal/dashboard";
   const [active, setActive] = useState("overview");
   const [collapsed, setCollapsed] = useState(false);
 
@@ -90,13 +95,20 @@ export default function StudentSidebar({ fullName, grade }) {
             Navigation
           </p>
         )}
-        {NAV.map(({ id, icon, label }) => {
-          const isActive = active === id;
+        {NAV.map(({ id, icon, label, type, href }) => {
+          const isActive = type === "page"
+            ? pathname === href
+            : onDashboard && active === id;
+          const linkHref = type === "page"
+            ? href
+            : onDashboard
+            ? `#${id}`
+            : `/student-portal/dashboard#${id}`;
           return (
             <a
               key={id}
-              href={`#${id}`}
-              onClick={() => setActive(id)}
+              href={linkHref}
+              onClick={() => { if (type === "anchor") setActive(id); }}
               title={collapsed ? label : undefined}
               style={{
                 display: "flex",

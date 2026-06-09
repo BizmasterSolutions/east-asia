@@ -25,7 +25,7 @@ export default async function StudentDashboard() {
   const payload = await verifyToken(token);
   if (!payload || payload.role !== "student") redirect("/student-portal/login");
 
-  const { fullName, grade } = payload;
+  const { id: studentId, fullName, grade } = payload;
 
   const [downloads, exams, announcements] = await Promise.all([
     prisma.downloadableFile.findMany({ where: { grade: { in: [grade, "All Grades"] } }, orderBy: { uploadedAt: "desc" } }),
@@ -44,10 +44,11 @@ export default async function StudentDashboard() {
   const initials = fullName.split(" ").map((n) => n[0]).slice(0, 2).join("").toUpperCase();
 
   const nextExam = exams[0] ?? null;
+
   const stats = [
-    { label: "Available Files", value: downloads.length, icon: "📄", color: "#6366f1", bg: "#eef2ff" },
-    { label: "Upcoming Exams", value: exams.length, icon: "📝", color: "#0891b2", bg: "#e0f2fe" },
-    { label: "Announcements", value: announcements.length, icon: "📢", color: "#c8a000", bg: "#fffbeb" },
+    { label: "Available Files", value: downloads.length,     icon: "📄", color: "#6366f1", bg: "#eef2ff" },
+    { label: "Upcoming Exams",  value: exams.length,         icon: "📝", color: "#0891b2", bg: "#e0f2fe" },
+    { label: "Announcements",   value: announcements.length, icon: "📢", color: "#c8a000", bg: "#fffbeb" },
   ];
 
   return (
