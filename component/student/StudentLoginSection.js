@@ -333,11 +333,11 @@ const StudentLoginSection = () => {
       <div className="spl-page">
 
         {/* ── LEFT PANEL ── */}
-        <div className="spl-left" style={{ backgroundImage: "url('/young-schoolgirl-eyeglasses-holding-her-books-looks-tired-bored.avif')", backgroundSize: "cover", backgroundPosition: "center top" }}>
+        <div className="spl-left" style={{ backgroundImage: "url('/young-schoolgirl-eyeglasses-holding-her-books-looks-tired-bored.avif')", backgroundSize: "cover", backgroundPosition: "center top", position: "relative", overflow: "hidden" }}>
           <div className="spl-left-overlay" />
 
           <div className="spl-left-top">
-            <div className="spl-logo">
+            <div className="spl-logo" style={{ width: 80, height: 80, position: "relative" }}>
               <Image src="/Logo.png" alt="East Asian Logo" fill style={{ objectFit: "contain" }} />
             </div>
           </div>
