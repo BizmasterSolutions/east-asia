@@ -126,7 +126,8 @@ export function ImageUpload({ currentUrl, onUpload, label = "Image" }) {
           <img src={currentUrl} alt="preview" />
         </div>
       )}
-      <input type="file" accept="image/*" onChange={handleFile} disabled={uploading} style={{ fontSize: 13 }} />
+      <input type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/avif" onChange={handleFile} disabled={uploading} style={{ fontSize: 13 }} />
+      <span style={{ display: "block", fontSize: 11, color: "#9ca3af", marginTop: 4 }}>Supported: JPG, PNG, WEBP, GIF, AVIF · Max 5 MB</span>
       {uploading && (
         <span style={{ fontSize: 12, color: "#6b7280", marginLeft: 8 }}>Uploading…</span>
       )}

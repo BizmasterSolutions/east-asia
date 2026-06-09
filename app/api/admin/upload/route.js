@@ -4,7 +4,7 @@ import { verifyToken } from "@/lib/auth";
 import { writeFile, mkdir, unlink, access } from "fs/promises";
 import path from "path";
 
-const ALLOWED_EXT = [".jpg", ".jpeg", ".png", ".webp", ".gif"];
+const ALLOWED_EXT = [".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif"];
 const MAX_SIZE = 5 * 1024 * 1024; // 5 MB
 const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
 
@@ -46,7 +46,7 @@ export async function POST(req) {
 
     const ext = path.extname(file.name).toLowerCase();
     if (!ALLOWED_EXT.includes(ext)) {
-      return NextResponse.json({ message: "Only image files are allowed (jpg, png, webp, gif)." }, { status: 400 });
+      return NextResponse.json({ message: "Only image files are allowed (jpg, png, webp, gif, avif)." }, { status: 400 });
     }
 
     const filename = `${Date.now()}-${Math.random().toString(36).slice(2)}${ext}`;
