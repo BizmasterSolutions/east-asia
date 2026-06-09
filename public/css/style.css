@@ -2205,14 +2205,11 @@ button {
 
 /*----- FOOTER START-----*/
 .tf__footer {
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-  background-image: url(../images/footer_bg.jpg);
+  background: #191e24;
 }
 
 .tf__footer_overlay {
-  background-color: #191e24f5;
+  background-color: transparent;
 }
 
 .tf__footer_logo_area .footer_logo {
@@ -2290,11 +2287,11 @@ button {
 }
 
 .tf__footer_content h3 {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
   text-transform: capitalize;
   color: var(--colorWhite);
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .tf__footer_content p {

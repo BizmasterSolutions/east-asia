@@ -4,7 +4,7 @@ import React from "react";
 const FooterSection = () => {
   return (
     <footer className="tf__footer mt_100">
-      <div className="tf__footer_overlay pt_75">
+      <div className="tf__footer_overlay" style={{ paddingTop: "40px", paddingBottom: "10px" }}>
         <div className="container">
           <div className="row justify-content-between">
             <div className="col-xl-3 col-sm-10 col-md-7 col-lg-6">
