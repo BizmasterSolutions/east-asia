@@ -3716,3 +3716,51 @@
     font-size: 30px;
   }
 }
+
+/* ============================================
+   MOBILE NAVBAR LOGO FIX
+   Constrain the stacked logo images so they
+   never overflow below the navbar bar.
+   ============================================ */
+@media (max-width: 991.99px) {
+  .main_menu .navbar-brand {
+    height: 62px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    max-width: 120px !important;
+  }
+
+  .main_menu .navbar-brand img:first-child {
+    height: 58px;
+    width: auto;
+    max-width: none;
+  }
+
+  /* Hide the separate text-logo image on small screens */
+  .main_menu .navbar-brand img:last-child {
+    display: none;
+  }
+
+  /* Ensure fixed navbar sits flush at top with no margin gap */
+  .menu_fix {
+    margin-top: 0 !important;
+  }
+
+  /* Banner hero: reduce oversized h1 on phones */
+  .tf__banner_text h1,
+  .tf__banner_text h1 span {
+    font-size: 40px;
+  }
+
+  /* Prevent horizontal overflow on any section */
+  .tf__categories,
+  .tf__facebook_feed,
+  .tf__about,
+  .tf__work,
+  .tf__activities,
+  .tf__video,
+  .tf__blog {
+    overflow-x: hidden;
+  }
+}

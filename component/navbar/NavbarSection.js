@@ -49,7 +49,7 @@ const NavbarSection = ({ style, logo, colors = {} }) => {
       }`}
       ref={navMenuRef}
       style={{
-        marginTop: "29px",
+        marginTop: isHeaderFixed ? "0px" : "29px",
         ...(textColor && { color: textColor }),
       }}
     >
