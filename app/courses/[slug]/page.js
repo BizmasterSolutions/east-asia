@@ -5,7 +5,7 @@ import { courseDataArray } from "@/data/Data";
 import ErrorSection from "@/component/error/ErrorSection";
 export const metadata = {
   title: "East Asian Course Details Page",
-  description: "Developed by Azizur Rahman",
+  description: "Developed by Bizmaster Solutions",
 };
 export default function CourseDetails({ params }) {
   const { slug } = params; // Destructure 'slug' from 'params'

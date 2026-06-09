@@ -3,7 +3,7 @@ import Layout from "@/component/layout/Layout";
 import AllTeamMemberSection from "@/component/team/AllTeamMemberSection";
 export const metadata = {
   title: 'East Asian Team Page',
-  description: 'Developed by Azizur Rahman',
+  description: 'Developed by Bizmaster Solutions',
 }
 export default function Team() {
     return (

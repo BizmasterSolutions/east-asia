@@ -3,7 +3,7 @@ import AllCourseSection from "@/component/course/AllCourseSection";
 import Layout from "@/component/layout/Layout";
 export const metadata = {
   title: 'East Asian Courses Page',
-  description: 'Developed by Azizur Rahman',
+  description: 'Developed by Bizmaster Solutions',
 }
 export default function Courses() {
     return (

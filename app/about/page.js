@@ -8,7 +8,7 @@ import Layout from "@/component/layout/Layout";
 import PopularServiceSection2 from "@/component/service/PopularServiceSection2";
 export const metadata = {
   title: 'East Asian About Page',
-  description: 'Developed by Azizur Rahman',
+  description: 'Developed by Bizmaster Solutions',
 }
 export default function About() {
     return (

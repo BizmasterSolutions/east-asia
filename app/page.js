@@ -18,7 +18,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "East Asian",
-  description: "Developed by Azizur Rahman",
+  description: "Developed by ",
 };
 
 const SETTING_KEYS = [

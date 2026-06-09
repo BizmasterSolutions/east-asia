@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "East Asian Events Page",
-  description: "Developed by Azizur Rahman",
+  description: "Developed by Bizmaster Solutions",
 };
 
 export default async function Event() {

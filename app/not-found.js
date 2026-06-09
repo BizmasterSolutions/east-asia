@@ -4,7 +4,7 @@ import Layout from "@/component/layout/Layout";
 
 export const metadata = {
   title: 'East Asian 404 Page',
-  description: 'Developed by Azizur Rahman',
+  description: 'Developed by Bizmaster Solutions',
 }
 export default function NotFound() {
   return (
