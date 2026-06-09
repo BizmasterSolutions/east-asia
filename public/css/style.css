@@ -751,6 +751,7 @@ button {
 .tf__single_category {
   position: relative;
   margin-top: 25px;
+  overflow: hidden;
 }
 
 .tf__single_category_icon {
@@ -779,7 +780,8 @@ button {
 }
 
 .tf__single_category_text {
-  background: url(../images/categiry_bg.png);
+  z-index: 2;
+  
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -958,6 +960,56 @@ button {
 
 .tf__single_category.red:hover .tf__single_category_icon {
   color: #ff5b5c;
+}
+
+/* ── Category card hover image reveal ── */
+.tf__single_category::before {
+  position: absolute;
+  content: "";
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.07);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  -webkit-transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.tf__single_category:hover::before {
+  opacity: 1;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+}
+
+/* Sinhala Language – children reading/writing */
+.tf__single_category.light_blue::before {
+  background-image: url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80");
+}
+
+/* Sri Lankan Heritage – ancient temple */
+.tf__single_category.blue::before {
+  background-image: url("https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=800&q=80");
+}
+
+/* Science & Technology – science experiment */
+.tf__single_category.green::before {
+  background-image: url("https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80");
+}
+
+/* Buddhist Studies – meditation / spiritual */
+.tf__single_category.gray::before {
+  background-image: url("https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=800&q=80");
+}
+
+/* Arts & Crafts – painting / creative arts */
+.tf__single_category.orange::before {
+  background-image: url("https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80");
+}
+
+/* Environment & Agriculture – lush green nature */
+.tf__single_category.red::before {
+  background-image: url("https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80");
 }
 
 /*-----CATEGORIES END-----*/
