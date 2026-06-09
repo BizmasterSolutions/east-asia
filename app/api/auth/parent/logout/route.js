@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server";
 
-export async function POST() {
-  const response = NextResponse.redirect(
-    new URL("/parent-portal/login", process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000")
-  );
+export async function POST(request) {
+  const { origin } = new URL(request.url);
+  const response = NextResponse.redirect(`${origin}/parent-portal/login`);
   response.cookies.set("parent_token", "", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
