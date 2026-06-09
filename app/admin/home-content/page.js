@@ -8,7 +8,6 @@ import NewsTab from "@/component/admin/home-content/NewsTab";
 import EventsTab from "@/component/admin/home-content/EventsTab";
 import SocialTab from "@/component/admin/home-content/SocialTab";
 import StatsTab from "@/component/admin/home-content/StatsTab";
-import AboutTab from "@/component/admin/home-content/AboutTab";
 import CoursesTab from "@/component/admin/home-content/CoursesTab";
 import ActivitiesTab from "@/component/admin/home-content/ActivitiesTab";
 import BlogTab from "@/component/admin/home-content/BlogTab";
@@ -17,7 +16,6 @@ import NavbarTab from "@/component/admin/home-content/NavbarTab";
 const TABS = [
   { id: "navbar",       label: "Navbar",                icon: "fas fa-bars" },
   { id: "hero",         label: "Hero Banner",           icon: "fas fa-image" },
-  { id: "about",        label: "About Section",         icon: "fas fa-info-circle" },
   { id: "courses",      label: "Advance Courses",       icon: "fas fa-graduation-cap" },
   { id: "activities",   label: "Activities",            icon: "fas fa-running" },
   { id: "blog",         label: "Blog & News",           icon: "fas fa-newspaper" },
@@ -81,7 +79,6 @@ export default function HomeContentPage() {
       <div style={{ maxWidth: ["courses", "blog"].includes(activeTab) ? 1200 : 760 }}>
         {activeTab === "navbar"       && <NavbarTab />}
         {activeTab === "hero"         && <HeroTab />}
-        {activeTab === "about"        && <AboutTab />}
         {activeTab === "courses"      && <CoursesTab />}
         {activeTab === "activities"   && <ActivitiesTab />}
         {activeTab === "blog"         && <BlogTab />}

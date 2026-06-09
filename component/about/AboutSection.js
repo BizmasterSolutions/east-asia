@@ -1,23 +1,14 @@
 import Link from "next/link";
 import React from "react";
 
-const AboutSection = ({ data = {} }) => {
-  const {
-    about_subtitle = "OUR About Us",
-    about_heading = "District is Made of about Students Childhood.",
-    about_description = "Business tailored it design, management & support services business agency elit, sed do eiusmod tempor.",
-    about_bullets = '["Business school\'s Institut constructivism.","We give management school best.","Media in this school solution.","Business school\'s Institut constructivism.","We give management school best."]',
-    about_cta_link = "/about",
-    about_main_img = "images/about_img.png",
-    about_top_img = "images/about_top_img.jpg",
-    about_top_heading = "Study Off Flexibly",
-    about_top_description = "We can provide you with a reliable handyan in Please input an email address down below school.",
-    about_stat_number = "183k+",
-    about_stat_label = "Complete Projects",
-  } = data;
-
-  let bullets = [];
-  try { bullets = JSON.parse(about_bullets); } catch { bullets = []; }
+const AboutSection = () => {
+  const bullets = [
+    "International curriculum aligned with global standards.",
+    "Experienced and dedicated teaching professionals.",
+    "State-of-the-art classrooms and learning facilities.",
+    "Strong emphasis on character, values, and leadership.",
+    "Vibrant extracurricular and cultural programmes.",
+  ];
 
   return (
     <section className="tf__about mt_250 xs_mt_195">
@@ -32,10 +23,10 @@ const AboutSection = ({ data = {} }) => {
             <div className="col-xl-7 col-lg-7">
               <div className="tf__about_top_text">
                 <div className="tf__about_top_text_center">
-                  <h4>{about_top_heading}</h4>
-                  <p>{about_top_description}</p>
+                  <h4>A Culture of Learning</h4>
+                  <p>Our experienced educators create a supportive environment where every student is empowered to reach their full potential and become a confident global citizen.</p>
                 </div>
-                <a href="#" className="common_btn">read more</a>
+                <a href="/about" className="common_btn">read more</a>
               </div>
             </div>
           </div>
@@ -45,25 +36,23 @@ const AboutSection = ({ data = {} }) => {
           <div className="col-xl-6 col-md-9 col-lg-6 wow fadeInLeft">
             <div className="tf__about_text">
               <div className="tf__heading_area tf__heading_area_left mb_25">
-                <h5>{about_subtitle}</h5>
-                <h2>{about_heading}</h2>
+                <h5>ABOUT OUR SCHOOL</h5>
+                <h2>Nurturing Excellence at East Asian International School</h2>
               </div>
-              <p>{about_description}</p>
-              {bullets.length > 0 && (
-                <ul>
-                  {bullets.map((b, i) => b && <li key={i}>{b}</li>)}
-                </ul>
-              )}
-              <Link href={about_cta_link} className="common_btn">about more</Link>
+              <p>East Asian International School is dedicated to providing a world-class education that nurtures academic excellence, character development, and cultural awareness in every student.</p>
+              <ul>
+                {bullets.map((b, i) => <li key={i}>{b}</li>)}
+              </ul>
+              <Link href="/about" className="common_btn">about more</Link>
             </div>
           </div>
           <div className="col-xl-6 col-sm-9 col-md-8 col-lg-6 wow fadeInRight">
             <div className="tf__about_img">
-              <img src={about_main_img} alt="about" className="img-fluid w-100" />
+              <img src="images/about_img.png" alt="about" className="img-fluid w-100" />
               <div className="text">
                 <i className="far fa-check-circle"></i>
-                <h3>{about_stat_number}</h3>
-                <p>{about_stat_label}</p>
+                <h3>1,200+</h3>
+                <p>Enrolled Students</p>
               </div>
             </div>
           </div>
