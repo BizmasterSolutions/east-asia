@@ -17,7 +17,7 @@ import prisma from "@/lib/prisma";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "East Asian Home Page 1",
+  title: "East Asian",
   description: "Developed by Azizur Rahman",
 };
 
