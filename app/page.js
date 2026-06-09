@@ -3,6 +3,7 @@ import ActivitySection from "@/component/activity/ActivitySection";
 import BannerSection from "@/component/banner/BannerSection";
 import BlogSection from "@/component/blog/BlogSection";
 import CategorySection from "@/component/category/CategorySection";
+import FacebookFeedSection from "@/component/facebook/FacebookFeedSection";
 import EventSection from "@/component/event/EventSection";
 import FaqSection from "@/component/faq/FaqSection";
 import FooterSection from "@/component/footer/FooterSection";
@@ -80,6 +81,7 @@ export default async function Home() {
       <NavbarSection style="" logo="/Logo mod.png" colors={navbarColors} />
       <BannerSection hero={hero} />
       <CategorySection />
+      <FacebookFeedSection />
       <AboutSection data={aboutData} />
       <EventSection section="tf__event mt_95" startIndex={0} endIndex={4} />
       <FaqSection img="/question-mark-icon-thinking-solution.avif" />
