@@ -58,7 +58,7 @@ export default async function ParentDashboard({ searchParams }) {
     prisma.mark.findMany({ where: { studentId: child.id }, include: { subject: true }, orderBy: [{ term: "asc" }] }),
     prisma.reportCard.findMany({ where: { studentId: child.id }, orderBy: { term: "asc" } }),
     Promise.resolve([]),
-    prisma.examSchedule.findMany({ where: { grade: child.grade }, orderBy: { examDate: "asc" } }),
+    prisma.examSchedule.findMany({ where: { grade: { in: [child.grade, "All Grades"] } }, orderBy: { examDate: "asc" } }),
     prisma.announcement.findMany({ where: { target: { in: ["all", "parents"] } }, orderBy: { createdAt: "desc" }, take: 8 }),
   ]);
 
@@ -339,7 +339,7 @@ export default async function ParentDashboard({ searchParams }) {
                     <table style={{ width: "100%", borderCollapse: "collapse" }}>
                       <thead>
                         <tr style={{ background: "#0f172a" }}>
-                          {["Exam", "Subject", "Date"].map((h) => (
+                          {["Exam", "Date", "PDF"].map((h) => (
                             <th key={h} style={{ padding: "11px 16px", textAlign: "left", color: "rgba(255,255,255,0.65)", fontSize: "11px", fontWeight: 600, textTransform: "uppercase" }}>{h}</th>
                           ))}
                         </tr>
@@ -348,9 +348,18 @@ export default async function ParentDashboard({ searchParams }) {
                         {exams.map((e, i) => (
                           <tr key={e.id} style={{ borderTop: "1px solid #f3f4f6", background: i % 2 === 0 ? "#fff" : "#fafafa" }}>
                             <td style={{ padding: "10px 16px", fontSize: "13px", color: "#111827", fontWeight: 500 }}>{e.examName}</td>
-                            <td style={{ padding: "10px 16px", fontSize: "13px", color: "#374151" }}>{e.subject}</td>
                             <td style={{ padding: "10px 16px", fontSize: "13px", color: "#374151" }}>
                               {new Date(e.examDate).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}
+                            </td>
+                            <td style={{ padding: "10px 16px" }}>
+                              {e.pdfPath ? (
+                                <a href={e.pdfPath} target="_blank" rel="noreferrer"
+                                  style={{ display: "inline-flex", alignItems: "center", gap: 4, background: "#fef2f2", color: "#dc2626", border: "1px solid #fecaca", borderRadius: 6, padding: "3px 8px", fontSize: "11px", fontWeight: 600, textDecoration: "none" }}>
+                                  ↓ PDF
+                                </a>
+                              ) : (
+                                <span style={{ color: "#d1d5db", fontSize: "12px" }}>—</span>
+                              )}
                             </td>
                           </tr>
                         ))}
