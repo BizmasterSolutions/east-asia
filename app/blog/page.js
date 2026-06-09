@@ -1,5 +1,4 @@
 import AllBlogSection from "@/component/blog/AllBlogSection";
-import BreadcrumbSection from "@/component/breadcrumb/BreadcrumbSection";
 import Layout from "@/component/layout/Layout";
 import prisma from "@/lib/prisma";
 
@@ -17,7 +16,6 @@ export default async function Blog() {
 
   return (
     <Layout>
-      <BreadcrumbSection header="Blog" title="Blog" />
       <AllBlogSection posts={posts} />
     </Layout>
   );
