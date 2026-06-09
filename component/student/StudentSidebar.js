@@ -123,30 +123,32 @@ export default function StudentSidebar({ fullName, grade }) {
 
       {/* Logout */}
       <div style={{ padding: "14px 10px", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-        <form action="/api/auth/student/logout" method="POST">
-          <button
-            type="submit"
-            title={collapsed ? "Logout" : undefined}
-            style={{
-              width: "100%",
-              padding: collapsed ? "10px" : "9px 12px",
-              background: "rgba(239,68,68,0.08)",
-              color: "#f87171",
-              border: "1px solid rgba(239,68,68,0.15)",
-              borderRadius: "8px",
-              cursor: "pointer",
-              fontWeight: 600,
-              fontSize: "13px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: collapsed ? "center" : "flex-start",
-              gap: "8px",
-            }}
-          >
-            <span style={{ fontSize: "15px" }}>⏻</span>
-            {!collapsed && "Logout"}
-          </button>
-        </form>
+        <button
+          type="button"
+          title={collapsed ? "Logout" : undefined}
+          style={{
+            width: "100%",
+            padding: collapsed ? "10px" : "9px 12px",
+            background: "rgba(239,68,68,0.08)",
+            color: "#f87171",
+            border: "1px solid rgba(239,68,68,0.15)",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontWeight: 600,
+            fontSize: "13px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: collapsed ? "center" : "flex-start",
+            gap: "8px",
+          }}
+          onClick={async () => {
+            await fetch("/api/auth/student/logout", { method: "POST" });
+            window.location.href = "/student-portal/login";
+          }}
+        >
+          <span style={{ fontSize: "15px" }}>⏻</span>
+          {!collapsed && "Logout"}
+        </button>
       </div>
     </aside>
   );

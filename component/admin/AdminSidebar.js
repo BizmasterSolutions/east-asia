@@ -91,12 +91,17 @@ export default function AdminSidebar() {
 
       {/* Logout */}
       <div className="ea-sidebar-footer">
-        <form action="/api/auth/admin/logout" method="POST">
-          <button type="submit" className="ea-logout-btn">
-            <i className="fas fa-sign-out-alt" />
-            Logout
-          </button>
-        </form>
+        <button
+          type="button"
+          className="ea-logout-btn"
+          onClick={async () => {
+            await fetch("/api/auth/admin/logout", { method: "POST" });
+            window.location.href = "/admin/login";
+          }}
+        >
+          <i className="fas fa-sign-out-alt" />
+          Logout
+        </button>
       </div>
     </aside>
   );
