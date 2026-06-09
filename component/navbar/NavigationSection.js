@@ -14,9 +14,6 @@ const NavigationSection = ({ position, btnPosition, navRef }) => {
     >
       <ul className={`navbar-nav ${position}`}>
         <li className="nav-item">
-          <Navlink href="/">Home</Navlink>
-        </li>
-        <li className="nav-item">
           <Navlink href="/about">about us</Navlink>
         </li>
         <li className="nav-item">
