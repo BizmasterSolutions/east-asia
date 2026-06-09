@@ -98,8 +98,9 @@ model ExamSchedule {
   id        Int      @id @default(autoincrement())
   grade     String
   examName  String
-  subject   String
+  subject   String?
   examDate  DateTime @db.Date
+  pdfPath   String?
 }
 
 // ─── STUDENT PORTAL ──────────────────────────────────────────────────────────

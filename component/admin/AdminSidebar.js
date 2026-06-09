@@ -26,6 +26,8 @@ const NAV = [
     group: "Academics",
     items: [
       { label: "Academics", href: "/admin/academics", icon: "fas fa-book" },
+      { label: "Exam Schedule",   href: "/admin/exam-schedule",   icon: "fas fa-calendar-check" },
+      { label: "Download Center", href: "/admin/download-center", icon: "fas fa-download" },
     ],
   },
   {

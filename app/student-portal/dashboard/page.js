@@ -9,11 +9,13 @@ export const metadata = {
 };
 
 const CATEGORIES = [
-  { key: "term-paper", label: "Term Papers", icon: "📝", color: "#6366f1" },
-  { key: "mock", label: "Mock Papers", icon: "📋", color: "#0891b2" },
-  { key: "past", label: "Past Papers", icon: "📚", color: "#16a34a" },
-  { key: "revision", label: "Revision Papers", icon: "✏️", color: "#ea580c" },
-  { key: "timetable", label: "Timetables", icon: "📅", color: "#c8a000" },
+  { key: "lecture-notes", label: "Lecture Notes",    icon: "📖", color: "#6366f1" },
+  { key: "term-paper",    label: "Term Papers",       icon: "📝", color: "#0891b2" },
+  { key: "mock",          label: "Mock Papers",       icon: "📋", color: "#16a34a" },
+  { key: "past",          label: "Past Papers",       icon: "📚", color: "#ea580c" },
+  { key: "revision",      label: "Revision Notes",    icon: "✏️", color: "#c8a000" },
+  { key: "timetable",     label: "Timetables",        icon: "📅", color: "#7c3aed" },
+  { key: "images",        label: "Images & Diagrams", icon: "🖼️", color: "#db2777" },
 ];
 
 export default async function StudentDashboard() {
@@ -26,8 +28,8 @@ export default async function StudentDashboard() {
   const { fullName, grade } = payload;
 
   const [downloads, exams, announcements] = await Promise.all([
-    prisma.downloadableFile.findMany({ where: { grade }, orderBy: { uploadedAt: "desc" } }),
-    prisma.examSchedule.findMany({ where: { grade }, orderBy: { examDate: "asc" } }),
+    prisma.downloadableFile.findMany({ where: { grade: { in: [grade, "All Grades"] } }, orderBy: { uploadedAt: "desc" } }),
+    prisma.examSchedule.findMany({ where: { grade: { in: [grade, "All Grades"] } }, orderBy: { examDate: "asc" } }),
     prisma.announcement.findMany({
       where: { target: { in: ["all", "students"] } },
       orderBy: { createdAt: "desc" },
@@ -175,7 +177,7 @@ export default async function StudentDashboard() {
                 <table style={{ width: "100%", borderCollapse: "collapse" }}>
                   <thead>
                     <tr style={{ background: "#111827" }}>
-                      {["#", "Exam Name", "Subject", "Date", "Days Left"].map((h) => (
+                      {["#", "Exam Name", "Date", "Days Left", "PDF"].map((h) => (
                         <th key={h} style={{ padding: "13px 18px", textAlign: "left", color: "rgba(255,255,255,0.7)", fontSize: "11px", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>{h}</th>
                       ))}
                     </tr>
@@ -188,7 +190,6 @@ export default async function StudentDashboard() {
                         <tr key={e.id} style={{ borderTop: "1px solid #f3f4f6", background: i % 2 === 0 ? "#fff" : "#fafafa" }}>
                           <td style={{ padding: "13px 18px", fontSize: "13px", color: "#9ca3af", fontWeight: 600 }}>{i + 1}</td>
                           <td style={{ padding: "13px 18px", fontSize: "14px", color: "#111827", fontWeight: 500 }}>{e.examName}</td>
-                          <td style={{ padding: "13px 18px", fontSize: "14px", color: "#374151" }}>{e.subject}</td>
                           <td style={{ padding: "13px 18px", fontSize: "14px", color: "#374151" }}>
                             {new Date(e.examDate).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
                           </td>
@@ -196,6 +197,16 @@ export default async function StudentDashboard() {
                             <span style={{ background: `${urgency}18`, color: urgency, padding: "3px 10px", borderRadius: "12px", fontSize: "12px", fontWeight: 600 }}>
                               {daysLeft > 0 ? `${daysLeft}d` : daysLeft === 0 ? "Today" : "Past"}
                             </span>
+                          </td>
+                          <td style={{ padding: "13px 18px" }}>
+                            {e.pdfPath ? (
+                              <a href={e.pdfPath} target="_blank" rel="noreferrer"
+                                style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "#fef2f2", color: "#dc2626", border: "1px solid #fecaca", borderRadius: 6, padding: "4px 10px", fontSize: "12px", fontWeight: 600, textDecoration: "none" }}>
+                                ↓ PDF
+                              </a>
+                            ) : (
+                              <span style={{ color: "#d1d5db", fontSize: "12px" }}>—</span>
+                            )}
                           </td>
                         </tr>
                       );
@@ -226,25 +237,31 @@ export default async function StudentDashboard() {
                     </div>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "12px" }}>
                       {files.map((file) => (
-                        <div key={file.id} style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: "12px", padding: "18px", display: "flex", flexDirection: "column", gap: "12px" }}>
-                          <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
-                            <div style={{ width: "40px", height: "40px", background: `${color}15`, borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px", flexShrink: 0 }}>
-                              📄
+                        <div key={file.id} style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: "12px", overflow: "hidden", display: "flex", flexDirection: "column" }}>
+                          {/\.(jpg|jpeg|png|webp|gif|avif)$/i.test(file.filePath) ? (
+                            <div style={{ width: "100%", height: "110px", overflow: "hidden", background: "#f3f4f6" }}>
+                              <img src={file.filePath} alt={file.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                             </div>
-                            <div style={{ flex: 1, minWidth: 0 }}>
+                          ) : (
+                            <div style={{ height: "56px", background: `${color}12`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                              <span style={{ fontSize: "22px" }}>📄</span>
+                            </div>
+                          )}
+                          <div style={{ padding: "14px", display: "flex", flexDirection: "column", gap: "10px", flex: 1 }}>
+                            <div>
                               <p style={{ fontSize: "13px", fontWeight: 600, color: "#111827", margin: 0, lineHeight: 1.4, wordBreak: "break-word" }}>{file.title}</p>
                               <p style={{ fontSize: "11px", color: "#9ca3af", margin: "4px 0 0" }}>
                                 {new Date(file.uploadedAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
                               </p>
                             </div>
+                            <a
+                              href={file.filePath}
+                              download
+                              style={{ display: "block", textAlign: "center", padding: "8px", background: color, color: "#fff", borderRadius: "8px", textDecoration: "none", fontSize: "13px", fontWeight: 600 }}
+                            >
+                              ↓ Download
+                            </a>
                           </div>
-                          <a
-                            href={file.filePath}
-                            download
-                            style={{ display: "block", textAlign: "center", padding: "8px", background: color, color: "#fff", borderRadius: "8px", textDecoration: "none", fontSize: "13px", fontWeight: 600 }}
-                          >
-                            ↓ Download
-                          </a>
                         </div>
                       ))}
                     </div>
