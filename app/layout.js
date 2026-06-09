@@ -12,6 +12,7 @@ export const metadata = {
 };
 
 import { EduorProvider } from "@/context/EduorContext";
+import ScrollAnimator from "@/component/utils/ScrollAnimator";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/public/css/all.min.css";
 import "slick-carousel/slick/slick.css";
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
         <EduorProvider>
           {children}
           <ToastContainer />
+          <ScrollAnimator />
         </EduorProvider>
       </body>
     </html>

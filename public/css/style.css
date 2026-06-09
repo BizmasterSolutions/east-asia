@@ -71,9 +71,11 @@ span {
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 body {
   overflow-x: hidden;
-  scroll-behavior: smooth;
   font-family: var(--paraFont);
   color: var(--paraColor);
 }
