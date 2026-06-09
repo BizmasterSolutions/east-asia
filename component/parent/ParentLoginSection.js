@@ -39,7 +39,7 @@ export default function ParentLoginSection() {
 
   return (
     <>
-      <style>{`
+      <style suppressHydrationWarning>{`
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         .ppl-page {
@@ -331,11 +331,11 @@ export default function ParentLoginSection() {
       <div className="ppl-page">
 
         {/* ── LEFT PANEL ── */}
-        <div className="ppl-left" style={{ backgroundImage: "url('/cute-black-hair-child-female-daughter-homework-laugh-together-with-parent-living-room-house-concept.avif')", backgroundSize: "cover", backgroundPosition: "center top" }}>
+        <div className="ppl-left" style={{ backgroundImage: "url('/cute-black-hair-child-female-daughter-homework-laugh-together-with-parent-living-room-house-concept.avif')", backgroundSize: "cover", backgroundPosition: "center top", position: "relative", overflow: "hidden" }}>
           <div className="ppl-left-overlay" />
 
           <div className="ppl-left-top">
-            <div className="ppl-logo">
+            <div className="ppl-logo" style={{ width: 80, height: 80, position: "relative" }}>
               <Image src="/Logo.png" alt="East Asian Logo" fill style={{ objectFit: "contain" }} />
             </div>
           </div>
