@@ -190,7 +190,7 @@ const faqData = [
     color: "green",
     question: "Do you offer financial aid or scholarships for students?",
     answer:
-      "At this time, East Asian International School does not offer financial aid or scholarships. All students are enrolled on a full fee-paying basis. For details on our fee structure and payment options, please contact our admissions office.",
+      "Yes, we offer financial aid and scholarships to eligible students. Our financial aid packages are based on financial need and academic merit. To apply for financial aid or scholarships, please fill out the appropriate forms available on our website.",
   },
   {
     id: 2,

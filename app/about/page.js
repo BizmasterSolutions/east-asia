@@ -18,7 +18,7 @@ export default function About() {
                 <AboutSection3 style=''/>
                 <PopularServiceSection2/>
                 <CourseSection style="tf__popular_courses"/>
-                <FaqSection img="/question-mark-icon-thinking-solution.avif" />
+                <FaqSection img="images/faq_img_2.jpg"/>
                 <ActivitySection2 style="tf__activities_slider_area pt_95 pb_100"/>
                 <BlogSection/>
             </section>

@@ -25,6 +25,9 @@ const SETTING_KEYS = [
   "hero_subtitle", "hero_subtitle_color", "hero_heading", "hero_heading_color",
   "hero_heading_highlight", "hero_highlight_color",
   "hero_description", "hero_description_color", "hero_cta_text", "hero_cta_link", "hero_bg_image",
+  "about_subtitle", "about_heading", "about_description", "about_bullets",
+  "about_cta_link", "about_main_img", "about_top_img", "about_top_heading",
+  "about_top_description", "about_stat_number", "about_stat_label",
   "courses_subtitle", "courses_heading", "courses_description",
   "testimonial_subtitle", "testimonial_heading",
   "activity_subtitle", "activity_heading", "activity_description", "activity_img", "activity_items",
@@ -50,6 +53,13 @@ export default async function Home() {
       .map((k) => [k, settings[k]])
   );
 
+  const aboutData = Object.fromEntries(
+    ["about_subtitle", "about_heading", "about_description", "about_bullets", "about_cta_link",
+      "about_main_img", "about_top_img", "about_top_heading", "about_top_description",
+      "about_stat_number", "about_stat_label"]
+      .map((k) => [k, settings[k]])
+  );
+
   const coursesHeading = { courses_subtitle: settings.courses_subtitle, courses_heading: settings.courses_heading, courses_description: settings.courses_description };
   const testimonialsHeading = { testimonial_subtitle: settings.testimonial_subtitle, testimonial_heading: settings.testimonial_heading };
   const blogHeading = { blog_subtitle: settings.blog_subtitle, blog_heading: settings.blog_heading };
@@ -70,9 +80,9 @@ export default async function Home() {
       <NavbarSection style="" logo="/Logo mod.png" colors={navbarColors} />
       <BannerSection hero={hero} />
       <CategorySection />
-      <AboutSection />
+      <AboutSection data={aboutData} />
       <EventSection section="tf__event mt_95" startIndex={0} endIndex={4} />
-      <FaqSection img="/question-mark-icon-thinking-solution.avif" />
+      <FaqSection img="images/faq_img.jpg" />
       <WorkSection heading={coursesHeading} items={courseItems} />
 <ActivitySection data={activityData} />
       <VideoSection />

@@ -20,11 +20,12 @@ const FaqSection = ({ img }) => {
           <div className="col-xl-6 col-lg-6 wow fadeInRight">
             <div className="tf__faq_text">
               <div className="tf__heading_area tf__heading_area_left mb_25">
-                <h5>OUR EDUCATION FAQ</h5>
-                <h2>Frequently Asked Questions About Our School</h2>
+                <h5>OUR EDUCATION Faq</h5>
+                <h2>District is Made of about Students Childhood.</h2>
               </div>
               <p className="description">
-                Find answers to common questions from parents and students about life at East Asian International School.
+                Business tailored it design, management & support services
+                business agency elit, sed do eiusmod tempor.{" "}
               </p>
               <div className="tf__faq_accordion">
                 <div className="accordion" id="accordionExample">
