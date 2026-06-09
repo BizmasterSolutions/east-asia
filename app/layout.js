@@ -4,6 +4,11 @@ export const metadata = {
     template: "%s | East Asian International School",
   },
   description: "East Asian International School",
+  icons: {
+    icon: "/Logo.png",
+    shortcut: "/Logo.png",
+    apple: "/Logo.png",
+  },
 };
 
 import { EduorProvider } from "@/context/EduorContext";
