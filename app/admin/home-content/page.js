@@ -10,7 +10,6 @@ import SocialTab from "@/component/admin/home-content/SocialTab";
 import StatsTab from "@/component/admin/home-content/StatsTab";
 import AboutTab from "@/component/admin/home-content/AboutTab";
 import CoursesTab from "@/component/admin/home-content/CoursesTab";
-import TestimonialsTab from "@/component/admin/home-content/TestimonialsTab";
 import ActivitiesTab from "@/component/admin/home-content/ActivitiesTab";
 import BlogTab from "@/component/admin/home-content/BlogTab";
 import NavbarTab from "@/component/admin/home-content/NavbarTab";
@@ -20,7 +19,6 @@ const TABS = [
   { id: "hero",         label: "Hero Banner",           icon: "fas fa-image" },
   { id: "about",        label: "About Section",         icon: "fas fa-info-circle" },
   { id: "courses",      label: "Advance Courses",       icon: "fas fa-graduation-cap" },
-  { id: "testimonials", label: "Testimonials",          icon: "fas fa-quote-left" },
   { id: "activities",   label: "Activities",            icon: "fas fa-running" },
   { id: "blog",         label: "Blog & News",           icon: "fas fa-newspaper" },
   { id: "slideshow",    label: "Slideshow",             icon: "fas fa-images" },
@@ -85,7 +83,6 @@ export default function HomeContentPage() {
         {activeTab === "hero"         && <HeroTab />}
         {activeTab === "about"        && <AboutTab />}
         {activeTab === "courses"      && <CoursesTab />}
-        {activeTab === "testimonials" && <TestimonialsTab />}
         {activeTab === "activities"   && <ActivitiesTab />}
         {activeTab === "blog"         && <BlogTab />}
         {activeTab === "slideshow"    && <SlideshowTab />}

@@ -9,9 +9,6 @@ const DEFAULTS = {
   about_bullets: JSON.stringify(["", "", "", "", ""]),
   about_cta_link: "/about",
   about_main_img: "",
-  about_top_img: "",
-  about_top_heading: "Study Off Flexibly",
-  about_top_description: "",
   about_stat_number: "183k+",
   about_stat_label: "Complete Projects",
 };
@@ -50,13 +47,6 @@ export default function AboutTab() {
   return (
     <div>
       <Msg msg={msg} />
-
-      <SectionCard>
-        <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16, color: "#111827" }}>Top Banner Strip</h3>
-        <ImageUpload label="Top Image" currentUrl={form.about_top_img} onUpload={(url) => setForm((f) => ({ ...f, about_top_img: url }))} />
-        <Field label="Top Heading" name="about_top_heading" value={form.about_top_heading} onChange={change} />
-        <Field label="Top Description" name="about_top_description" value={form.about_top_description} onChange={change} textarea />
-      </SectionCard>
 
       <SectionCard>
         <h3 style={{ fontSize: 15, fontWeight: 700, marginBottom: 16, color: "#111827" }}>About Text Block</h3>
