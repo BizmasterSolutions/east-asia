@@ -1,0 +1,51 @@
+Here's my take on all three tasks. Since Task 1 depends on the specific customer conversation from your AWS SimuLearn session (that's an interactive simulation on your end, not part of the PDF), I can't reproduce your exact transcript — but I've filled in a typical version based on how these "File Systems in the Cloud" scenarios are usually structured. If your actual conversation had different specifics, just paste the text and I'll match the table to it exactly.
+
+## Task 1: Customer Conversation
+
+| Client Issue | AWS Solutions Builder Response |
+|---|---|
+| Multiple application servers (EC2 instances) each need access to the same set of files, but currently each instance only has its own local (EBS) storage, so files aren't shared between them. | Recommended Amazon EFS (Elastic File System) — a managed, shared file storage that multiple EC2 instances can mount and access concurrently over the network (NFS protocol). |
+| The customer is worried about scaling — as they add more EC2 instances, they don't want to manually copy or sync files across every new instance. | Explained that EFS scales automatically (storage grows/shrinks as needed) and any new EC2 instance in the same VPC can simply mount the existing file system — no manual syncing needed. |
+| The customer needs the file system to be available across multiple Availability Zones for durability/high availability. | Suggested creating EFS mount targets in each subnet/AZ where EC2 instances are running, so the file system is accessible and redundant across AZs. |
+
+## Task 2: Sharing a file between two EC2 instances using EFS
+
+1. **Create the EFS file system** in the AWS console (EFS → Create file system), selecting the same VPC as your EC2 instances.
+2. **Create mount targets** in the subnets/Availability Zones where your EC2 instances live — each mount target gets an IP address in that subnet.
+3. **Configure security groups** so the EFS mount target's security group allows inbound NFS traffic (port 2049) from the EC2 instances' security group.
+4. **Install the NFS client / EFS mount helper** on each EC2 instance:
+   ```
+   sudo yum install -y amazon-efs-utils
+   ```
+   (or `nfs-common` on Ubuntu-based AMIs if not using the helper)
+5. **Create a local mount point directory** on each instance, e.g.:
+   ```
+   sudo mkdir /mnt/efs
+   ```
+6. **Mount the file system** on each instance using its File System ID:
+   ```
+   sudo mount -t efs fs-xxxxxxxx:/ /mnt/efs
+   ```
+7. **Create/write a file from one instance** into `/mnt/efs`, and it instantly becomes visible on the second instance's `/mnt/efs`, since both are mounting the same underlying EFS file system over the network.
+8. (Optional) Add an entry to `/etc/fstab` on each instance so the mount persists after reboot.
+
+## Task 3: Reflection Questions
+
+**1. What did you learn while mounting the EFS file system on the EC2 instances?**
+
+A few key takeaways worth writing in your own words:
+- EFS is a *shared, network-based* file system (NFS), unlike EBS which is block storage tied to a single EC2 instance at a time.
+- Mount targets are AZ-specific — you need one per AZ where you have instances that should access the file system.
+- Security groups are critical — the mount fails silently (times out) if port 2049 isn't open between the EC2 and EFS security groups.
+- Mounting doesn't copy data locally — the directory acts as a live window into the same remote storage, so changes are immediate and shared.
+- EFS storage capacity is elastic — you don't provision a fixed size like you would with EBS.
+
+**2. How did you verify that both EC2 instances were accessing the same file system?**
+
+Typical verification steps:
+- Created a test file on Instance A inside the mounted directory (e.g., `touch /mnt/efs/test.txt` or wrote some text into a file).
+- Switched to Instance B and checked the same mount path — the file appeared immediately without any manual transfer.
+- Ran `df -h` on both instances to confirm the mount showed the same File System ID (fs-xxxxxxxx).
+- Optionally edited the file from Instance B and confirmed the change was visible back on Instance A, confirming true two-way shared access rather than a stale copy.
+
+If you paste the actual conversation text from your SimuLearn session, I can tighten up Task 1 to match your specific transcript exactly.

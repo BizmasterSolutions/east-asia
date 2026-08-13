@@ -37,20 +37,21 @@ const BannerSection = ({ hero = {} }) => {
 
   return (
     <section className="tf__banner" style={bgStyle}>
+      <div className="tf__banner_scrim" aria-hidden="true"></div>
       <div className="container">
         <div className="row">
           <div className="col-xl-7 col-lg-8">
-            <div className="tf__banner_text wow fadeInUp">
-              <h5 style={{ color: subtitleColor }}>{subtitle}</h5>
-              <h1 style={{ color: headingColor }}>
+            <div className="tf__banner_text">
+              <h5 className="wow fadeInUp" style={{ color: subtitleColor }}>{subtitle}</h5>
+              <h1 className="wow fadeInUp" data-wow-delay="0.12s" style={{ color: headingColor }}>
                 {headingParts[0]}
                 {heading.includes(highlight) && (
                   <span style={{ color: highlightColor }}>{highlight}</span>
                 )}
                 {headingParts[1]}
               </h1>
-              <p style={{ color: descriptionColor }}>{description}</p>
-              <ul className="d-flex flex-wrap align-items-center">
+              <p className="wow fadeInUp" data-wow-delay="0.24s" style={{ color: descriptionColor }}>{description}</p>
+              <ul className="d-flex flex-wrap align-items-center wow fadeInUp" data-wow-delay="0.36s">
                 <li>
                   <Link className="common_btn" href={ctaLink}>
                     {ctaText}

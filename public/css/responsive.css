@@ -104,10 +104,6 @@
     font-size: 40px;
   }
 
-  .tf__heading_area h2 {
-    font-size: 37px;
-  }
-
   .tf__single_category_text h3 {
     font-size: 20px;
   }
@@ -472,17 +468,8 @@
     padding-left: 70px;
   }
 
-  .tf__banner_text h1,
-  .tf__banner_text h1 span {
-    font-size: 60px;
-  }
-
   .tf__banner_text p {
     max-width: 80%;
-  }
-
-  .tf__heading_area h2 {
-    font-size: 30px;
   }
 
   .tf__about_top_text_center {
@@ -1048,10 +1035,6 @@
   /* banner end */
 
   /* categories start */
-  .tf__heading_area h2 {
-    font-size: 30px;
-  }
-
   .tf__single_category_text {
     padding: 25px;
     margin-left: 38px;
@@ -1826,11 +1809,6 @@
   /* menu end */
 
   /* banner start */
-  .tf__banner_text h1,
-  .tf__banner_text h1 span {
-    font-size: 50px;
-  }
-
   .tf__banner_text p {
     font-size: 16px;
     max-width: 85%;
@@ -1854,10 +1832,6 @@
   /* banner end */
 
   /* categories start */
-  .tf__heading_area h2 {
-    font-size: 30px;
-  }
-
   /* categories end */
 
   /* about start */
@@ -2688,11 +2662,6 @@
     font-size: 15px;
   }
 
-  .tf__banner_text h1,
-  .tf__banner_text h1 span {
-    font-size: 40px;
-  }
-
   .tf__banner_text p {
     font-size: 16px;
     max-width: 100%;
@@ -2718,10 +2687,6 @@
   /* categories start */
   .tf__heading_area h5 {
     font-size: 15px;
-  }
-
-  .tf__heading_area h2 {
-    font-size: 25px;
   }
 
   .tf__single_category_icon {
@@ -3706,14 +3671,8 @@
   .tf__banner_text h5 {
     font-size: 15px;
   }
-  .tf__banner_text h1 {
-    font-size: 50px;
-  }
   .tf__banner_text p {
     font-size: 15px;
-  }
-  .tf__heading_area h2 {
-    font-size: 30px;
   }
 }
 
@@ -3745,12 +3704,6 @@
   /* Ensure fixed navbar sits flush at top with no margin gap */
   .menu_fix {
     margin-top: 0 !important;
-  }
-
-  /* Banner hero: reduce oversized h1 on phones */
-  .tf__banner_text h1,
-  .tf__banner_text h1 span {
-    font-size: 40px;
   }
 
   /* Prevent horizontal overflow on any section */

@@ -6,7 +6,7 @@ import prisma from "@/lib/prisma";
 const HEADING_KEYS = ["courses_subtitle", "courses_heading"];
 const HEADING_DEFAULTS = {
   courses_subtitle: "OUR Working now",
-  courses_heading: "Complete About Students Advance Course.",
+  courses_heading: "Upcoming Events",
 };
 
 async function auth() {

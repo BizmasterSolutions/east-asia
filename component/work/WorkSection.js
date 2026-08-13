@@ -4,7 +4,7 @@ import WorkSlider from "../slider/WorkSlider";
 
 const WorkSection = ({ heading = {}, items = [] }) => {
   const subtitle = heading.courses_subtitle    || "OUR ADVANCE PROGRAMS";
-  const title    = heading.courses_heading     || "Complete About Students Advance Course.";
+  const title    = heading.courses_heading     || "Upcoming Events";
   const desc     = heading.courses_description ||
     "Our advance courses are built to take students beyond the basics — combining expert instruction, culturally rich content, and practical skills that prepare learners for academic excellence and global opportunities.";
 

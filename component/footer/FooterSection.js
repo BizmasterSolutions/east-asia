@@ -58,9 +58,6 @@ const FooterSection = () => {
                 <h3>Quick Links</h3>
                 <ul>
                   <li>
-                    <Link href="/courses">Best Services</Link>
-                  </li>
-                  <li>
                     <Link href="/events">Events</Link>
                   </li>
                   <li>

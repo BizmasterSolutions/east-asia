@@ -50,6 +50,30 @@ const CSS = `
     box-shadow: 0 4px 24px rgba(0,0,0,0.10);
     transition: box-shadow 0.3s ease;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wow-pending {
+      visibility: visible;
+      opacity: 1;
+    }
+    .wow.animated.fadeInUp,
+    .wow.animated.fadeInDown,
+    .wow.animated.fadeInLeft,
+    .wow.animated.fadeInRight,
+    .wow.animated.fadeIn,
+    .wow.animated.zoomIn {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+    .img-reveal img {
+      transition: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+    .menu_fix {
+      transition: none !important;
+    }
+  }
 `;
 
 function isInViewport(el) {

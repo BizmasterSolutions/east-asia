@@ -2,12 +2,8 @@
 import { useState } from "react";
 import HeroTab from "@/component/admin/home-content/HeroTab";
 import SlideshowTab from "@/component/admin/home-content/SlideshowTab";
-import PrincipalTab from "@/component/admin/home-content/PrincipalTab";
-import StoriesTab from "@/component/admin/home-content/StoriesTab";
-import NewsTab from "@/component/admin/home-content/NewsTab";
 import EventsTab from "@/component/admin/home-content/EventsTab";
 import SocialTab from "@/component/admin/home-content/SocialTab";
-import StatsTab from "@/component/admin/home-content/StatsTab";
 import CoursesTab from "@/component/admin/home-content/CoursesTab";
 import ActivitiesTab from "@/component/admin/home-content/ActivitiesTab";
 import BlogTab from "@/component/admin/home-content/BlogTab";
@@ -16,16 +12,12 @@ import NavbarTab from "@/component/admin/home-content/NavbarTab";
 const TABS = [
   { id: "navbar",       label: "Navbar",                icon: "fas fa-bars" },
   { id: "hero",         label: "Hero Banner",           icon: "fas fa-image" },
-  { id: "courses",      label: "Advance Courses",       icon: "fas fa-graduation-cap" },
+  { id: "courses",      label: "Upcoming Events",        icon: "fas fa-graduation-cap" },
   { id: "activities",   label: "Activities",            icon: "fas fa-running" },
   { id: "blog",         label: "Blog & News",           icon: "fas fa-newspaper" },
   { id: "slideshow",    label: "Slideshow",             icon: "fas fa-images" },
-  { id: "principal",    label: "Principal's Note",      icon: "fas fa-user-tie" },
-  { id: "stories",      label: "Success Stories",       icon: "fas fa-star" },
-  { id: "news",         label: "News",                  icon: "fas fa-bullhorn" },
   { id: "events",       label: "Events",                icon: "fas fa-calendar-alt" },
   { id: "social",       label: "Social Links",          icon: "fas fa-share-alt" },
-  { id: "stats",        label: "School Stats",          icon: "fas fa-chart-bar" },
 ];
 
 export default function HomeContentPage() {
@@ -83,12 +75,8 @@ export default function HomeContentPage() {
         {activeTab === "activities"   && <ActivitiesTab />}
         {activeTab === "blog"         && <BlogTab />}
         {activeTab === "slideshow"    && <SlideshowTab />}
-        {activeTab === "principal"    && <PrincipalTab />}
-        {activeTab === "stories"      && <StoriesTab />}
-        {activeTab === "news"         && <NewsTab />}
         {activeTab === "events"       && <EventsTab />}
         {activeTab === "social"       && <SocialTab />}
-        {activeTab === "stats"        && <StatsTab />}
       </div>
     </div>
   );
