@@ -9,15 +9,23 @@ export const EduorProvider = ({ children }) => {
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY >= 50) {
-        setIsHeaderFixed(true);
-      } else {
-        setIsHeaderFixed(false);
-      }
+    let ticking = false;
+
+    const updateHeaderFixed = () => {
+      const shouldBeFixed = window.scrollY >= 50;
+      setIsHeaderFixed((prev) => (prev === shouldBeFixed ? prev : shouldBeFixed));
+      ticking = false;
     };
 
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(updateHeaderFixed);
+    };
+
+    // Sync initial state in case page is loaded at a scrolled position.
+    updateHeaderFixed();
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       // Clean up the event listener when the component is unmounted

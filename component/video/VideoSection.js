@@ -2,6 +2,8 @@
 import { useEduorContext } from "@/context/EduorContext";
 import React from "react";
 
+const VIDEO_URL = "https://youtu.be/vXhjIVvULYo";
+
 const VideoSection = () => {
   const { handleVideoShow } = useEduorContext();
   return (
@@ -23,7 +25,12 @@ const VideoSection = () => {
                   There are many variations of passages of agency Lorem Ipsum
                   Fasts injecte.
                 </p>
-                <a className="common_btn" href="#">
+                <a
+                  className="common_btn"
+                  href={VIDEO_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Apply Now
                 </a>
               </div>

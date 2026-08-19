@@ -19,7 +19,7 @@ const VideoModal = () => {
                 className='video-modal-iframe'
                 src={embedUrl}        
                 allow="autoplay; accelerometer; encrypted-media; gyroscope; picture-in-picture"
-                llowFullScreen      
+                allowFullScreen      
                 />
             </div>
             </div>
