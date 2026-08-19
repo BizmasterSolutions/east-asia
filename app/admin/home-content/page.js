@@ -1,9 +1,6 @@
 "use client";
 import { useState } from "react";
 import HeroTab from "@/component/admin/home-content/HeroTab";
-import SlideshowTab from "@/component/admin/home-content/SlideshowTab";
-import EventsTab from "@/component/admin/home-content/EventsTab";
-import SocialTab from "@/component/admin/home-content/SocialTab";
 import CoursesTab from "@/component/admin/home-content/CoursesTab";
 import ActivitiesTab from "@/component/admin/home-content/ActivitiesTab";
 import BlogTab from "@/component/admin/home-content/BlogTab";
@@ -15,9 +12,6 @@ const TABS = [
   { id: "courses",      label: "Upcoming Events",        icon: "fas fa-graduation-cap" },
   { id: "activities",   label: "Activities",            icon: "fas fa-running" },
   { id: "blog",         label: "Blog & News",           icon: "fas fa-newspaper" },
-  { id: "slideshow",    label: "Slideshow",             icon: "fas fa-images" },
-  { id: "events",       label: "Events",                icon: "fas fa-calendar-alt" },
-  { id: "social",       label: "Social Links",          icon: "fas fa-share-alt" },
 ];
 
 export default function HomeContentPage() {
@@ -74,9 +68,6 @@ export default function HomeContentPage() {
         {activeTab === "courses"      && <CoursesTab />}
         {activeTab === "activities"   && <ActivitiesTab />}
         {activeTab === "blog"         && <BlogTab />}
-        {activeTab === "slideshow"    && <SlideshowTab />}
-        {activeTab === "events"       && <EventsTab />}
-        {activeTab === "social"       && <SocialTab />}
       </div>
     </div>
   );
