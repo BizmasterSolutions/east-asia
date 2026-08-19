@@ -1,16 +1,56 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const CATEGORIES = ["all", "events", "sports", "academic", "arts", "competitions", "classroom"];
 
 export default function GallerySection({ photos = [], videos = [] }) {
   const [activeTab, setActiveTab] = useState("photos");
   const [activeCategory, setActiveCategory] = useState("all");
-  const [lightbox, setLightbox] = useState(null);
+  const [lightboxIndex, setLightboxIndex] = useState(-1);
+  const [lightboxLayout, setLightboxLayout] = useState("landscape");
 
   const filtered = activeCategory === "all"
     ? photos
     : photos.filter((p) => p.category === activeCategory);
+
+  const isLightboxOpen = lightboxIndex >= 0;
+  const activePhoto = isLightboxOpen ? filtered[lightboxIndex] : null;
+
+  const closeLightbox = () => setLightboxIndex(-1);
+  const openLightboxAt = (index) => setLightboxIndex(index);
+  const showPrev = () => setLightboxIndex((idx) => (idx <= 0 ? filtered.length - 1 : idx - 1));
+  const showNext = () => setLightboxIndex((idx) => (idx >= filtered.length - 1 ? 0 : idx + 1));
+
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") showPrev();
+      if (e.key === "ArrowRight") showNext();
+    };
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isLightboxOpen, filtered.length]);
+
+  useEffect(() => {
+    if (!isLightboxOpen || !activePhoto?.imagePath) return;
+
+    const probe = new Image();
+    probe.onload = () => {
+      const isPortrait = probe.naturalHeight > probe.naturalWidth;
+      setLightboxLayout(isPortrait ? "portrait" : "landscape");
+    };
+    probe.onerror = () => setLightboxLayout("landscape");
+    probe.src = activePhoto.imagePath;
+  }, [isLightboxOpen, activePhoto?.imagePath]);
 
   return (
     <section style={{ padding: "140px 0 80px", minHeight: "60vh" }}>
@@ -79,10 +119,10 @@ export default function GallerySection({ photos = [], videos = [] }) {
             <p style={{ textAlign: "center", color: "#9ca3af", padding: "40px 0" }}>No photos in this category yet.</p>
           ) : (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 16 }}>
-              {filtered.map((photo) => (
+              {filtered.map((photo, index) => (
                 <div
                   key={photo.id}
-                  onClick={() => setLightbox(photo.imagePath)}
+                  onClick={() => openLightboxAt(index)}
                   style={{
                     borderRadius: 10,
                     overflow: "hidden",
@@ -143,30 +183,120 @@ export default function GallerySection({ photos = [], videos = [] }) {
       </div>
 
       {/* Lightbox */}
-      {lightbox && (
+      {isLightboxOpen && activePhoto && (
         <div
-          onClick={() => setLightbox(null)}
+          onClick={closeLightbox}
           style={{
-            position: "fixed", inset: 0, background: "rgba(0,0,0,0.85)",
+            position: "fixed", inset: 0, background: "rgba(0,0,0,0.94)",
             display: "flex", alignItems: "center", justifyContent: "center",
             zIndex: 9999, cursor: "zoom-out",
+            padding: "clamp(12px, 2.2vw, 28px)",
+            overflow: "hidden",
           }}
         >
-          <img
-            src={lightbox}
-            alt="gallery"
-            style={{ maxWidth: "90vw", maxHeight: "90vh", borderRadius: 8, objectFit: "contain" }}
+          {filtered.length > 1 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); showPrev(); }}
+              aria-label="Previous image"
+              style={{
+                position: "absolute",
+                left: 16,
+                top: "50%",
+                transform: "translateY(-50%)",
+                width: 44,
+                height: 44,
+                borderRadius: "50%",
+                border: "1px solid rgba(255,255,255,0.35)",
+                background: "rgba(0,0,0,0.35)",
+                color: "#fff",
+                fontSize: 24,
+                lineHeight: 1,
+                cursor: "pointer",
+              }}
+            >
+              &#8249;
+            </button>
+          )}
+
+          <div
             onClick={(e) => e.stopPropagation()}
-          />
+            style={{
+              width:
+                lightboxLayout === "portrait"
+                  ? "min(calc(92vh * 9 / 16), 92vw, 640px)"
+                  : "min(96vw, 1600px)",
+              height: "min(92vh, 1100px)",
+              aspectRatio: lightboxLayout === "portrait" ? "9 / 16" : "auto",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <img
+              src={activePhoto.imagePath}
+              alt={activePhoto.category}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+                objectPosition: "center center",
+                borderRadius: 8,
+                display: "block",
+              }}
+            />
+          </div>
+
+          {filtered.length > 1 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); showNext(); }}
+              aria-label="Next image"
+              style={{
+                position: "absolute",
+                right: 16,
+                top: "50%",
+                transform: "translateY(-50%)",
+                width: 44,
+                height: 44,
+                borderRadius: "50%",
+                border: "1px solid rgba(255,255,255,0.35)",
+                background: "rgba(0,0,0,0.35)",
+                color: "#fff",
+                fontSize: 24,
+                lineHeight: 1,
+                cursor: "pointer",
+              }}
+            >
+              &#8250;
+            </button>
+          )}
+
           <button
-            onClick={() => setLightbox(null)}
+            onClick={closeLightbox}
             style={{
               position: "absolute", top: 20, right: 28,
               background: "none", border: "none", color: "#fff", fontSize: 32, cursor: "pointer",
             }}
+            aria-label="Close image"
           >
             &times;
           </button>
+
+          <div
+            style={{
+              position: "absolute",
+              bottom: 18,
+              left: "50%",
+              transform: "translateX(-50%)",
+              color: "rgba(255,255,255,0.92)",
+              fontSize: 13,
+              fontWeight: 500,
+              background: "rgba(0,0,0,0.35)",
+              padding: "6px 10px",
+              borderRadius: 999,
+            }}
+          >
+            {lightboxIndex + 1} / {filtered.length}
+          </div>
         </div>
       )}
     </section>
