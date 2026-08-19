@@ -46,7 +46,7 @@ const BannerSection = ({ hero = {} }) => {
               <h1 className="wow fadeInUp" data-wow-delay="0.12s" style={{ color: headingColor }}>
                 {headingParts[0]}
                 {heading.includes(highlight) && (
-                  <span style={{ color: highlightColor }}>{highlight}</span>
+                  <span style={{ color: highlightColor, fontSize: "1.18em", lineHeight: 1 }}>{highlight}</span>
                 )}
                 {headingParts[1]}
               </h1>

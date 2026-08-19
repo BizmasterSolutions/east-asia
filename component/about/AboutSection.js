@@ -4,16 +4,16 @@ import React from "react";
 const AboutSection = ({ data = {} }) => {
   const {
     about_subtitle = "OUR About Us",
-    about_heading = "District is Made of about Students Childhood.",
-    about_description = "Business tailored it design, management & support services business agency elit, sed do eiusmod tempor.",
-    about_bullets = '["Business school\'s Institut constructivism.","We give management school best.","Media in this school solution.","Business school\'s Institut constructivism.","We give management school best."]',
+    about_heading = "East Asia International School, Nugegoda",
+    about_description = "East Asia International School is a combined primary and secondary school in Nugegoda, Sri Lanka. We support students with structured learning, caring guidance, and a strong school community.",
+    about_bullets = '["Located at 25 Sunethradevi Rd, Nugegoda.","Combined primary and secondary education.","Student-focused teaching with balanced academic and personal growth.","Easy parent communication through direct school contact.","Official school website: www.eastasian.lk"]',
     about_cta_link = "/about",
     about_main_img = "/question-mark-icon-thinking-solution.avif",
     about_top_img = "images/about_top_img.jpg",
-    about_top_heading = "Study Off Flexibly",
-    about_top_description = "We can provide you with a reliable handyan in Please input an email address down below school.",
-    about_stat_number = "183k+",
-    about_stat_label = "Complete Projects",
+    about_top_heading = "Learning with Purpose",
+    about_top_description = "At East Asia International School, we help children build knowledge, character, and confidence in a safe and supportive environment.",
+    about_stat_number = "Nugegoda",
+    about_stat_label = "Sri Lanka Campus",
   } = data;
 
   let bullets = [];
@@ -35,7 +35,7 @@ const AboutSection = ({ data = {} }) => {
                   <h4>{about_top_heading}</h4>
                   <p>{about_top_description}</p>
                 </div>
-                <a href="#" className="common_btn">read more</a>
+                <a href={about_cta_link} className="common_btn">read more</a>
               </div>
             </div>
           </div>

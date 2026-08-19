@@ -35,6 +35,68 @@ const SETTING_KEYS = [
   "navbar_bg_color", "navbar_text_color", "navbar_link_color",
 ];
 
+const ABOUT_DEFAULTS = {
+  about_subtitle: "OUR About Us",
+  about_heading: "East Asia International School, Nugegoda",
+  about_description:
+    "East Asia International School is a combined primary and secondary school in Nugegoda, Sri Lanka. We support students with structured learning, caring guidance, and a strong school community.",
+  about_bullets:
+    '["Located at 25 Sunethradevi Rd, Nugegoda.","Combined primary and secondary education.","Student-focused teaching with balanced academic and personal growth.","Easy parent communication through direct school contact.","Official school website: www.eastasian.lk"]',
+  about_cta_link: "/about",
+  about_main_img: "/question-mark-icon-thinking-solution.avif",
+  about_top_img: "images/about_top_img.jpg",
+  about_top_heading: "Learning with Purpose",
+  about_top_description:
+    "At East Asia International School, we help children build knowledge, character, and confidence in a safe and supportive environment.",
+  about_stat_number: "Nugegoda",
+  about_stat_label: "Sri Lanka Campus",
+};
+
+function normalizeAboutSettings(settings) {
+  const data = Object.fromEntries(
+    [
+      "about_subtitle",
+      "about_heading",
+      "about_description",
+      "about_bullets",
+      "about_cta_link",
+      "about_main_img",
+      "about_top_img",
+      "about_top_heading",
+      "about_top_description",
+      "about_stat_number",
+      "about_stat_label",
+    ].map((k) => [k, settings[k]])
+  );
+
+  const oldHeading = "District is Made of about Students Childhood.";
+  const oldDescription =
+    "Business tailored it design, management & support services business agency elit, sed do eiusmod tempor.";
+  const oldBulletHint = "Business school's Institut constructivism.";
+
+  const hasLegacyTemplate =
+    data.about_heading === oldHeading ||
+    data.about_description === oldDescription ||
+    (typeof data.about_bullets === "string" && data.about_bullets.includes(oldBulletHint));
+
+  if (!hasLegacyTemplate) {
+    return data;
+  }
+
+  return {
+    ...ABOUT_DEFAULTS,
+    ...data,
+    about_subtitle: ABOUT_DEFAULTS.about_subtitle,
+    about_heading: ABOUT_DEFAULTS.about_heading,
+    about_description: ABOUT_DEFAULTS.about_description,
+    about_bullets: ABOUT_DEFAULTS.about_bullets,
+    about_top_heading: ABOUT_DEFAULTS.about_top_heading,
+    about_top_description: ABOUT_DEFAULTS.about_top_description,
+    about_stat_number: ABOUT_DEFAULTS.about_stat_number,
+    about_stat_label: ABOUT_DEFAULTS.about_stat_label,
+  };
+}
+
 export default async function Home() {
   const [settingRows, courseItems, testimonialItems, blogItems] = await Promise.all([
     prisma.schoolSetting.findMany({ where: { key: { in: SETTING_KEYS } } }),
@@ -53,12 +115,7 @@ export default async function Home() {
       .map((k) => [k, settings[k]])
   );
 
-  const aboutData = Object.fromEntries(
-    ["about_subtitle", "about_heading", "about_description", "about_bullets", "about_cta_link",
-      "about_main_img", "about_top_img", "about_top_heading", "about_top_description",
-      "about_stat_number", "about_stat_label"]
-      .map((k) => [k, settings[k]])
-  );
+  const aboutData = normalizeAboutSettings(settings);
 
   const coursesHeading = { courses_subtitle: settings.courses_subtitle, courses_heading: settings.courses_heading, courses_description: settings.courses_description };
   const testimonialsHeading = { testimonial_subtitle: settings.testimonial_subtitle, testimonial_heading: settings.testimonial_heading };

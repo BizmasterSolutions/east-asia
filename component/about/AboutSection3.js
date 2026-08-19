@@ -22,7 +22,7 @@ const AboutSection3 = ({ style }) => {
                 />
               </div>
               <p>
-                <span>24+</span> Years of Experience
+                <span>Nugegoda</span> Sri Lanka Campus
               </p>
             </div>
           </div>
@@ -30,11 +30,12 @@ const AboutSection3 = ({ style }) => {
             <div className="tf__about_2_text">
               <div className="tf__heading_area tf__heading_area_left mb_25">
                 <h5>OUR About Us</h5>
-                <h2>Complete About Students University Education.</h2>
+                <h2>East Asia International School</h2>
               </div>
               <p>
-                Business tailored it design, management & support services
-                business agency elit, sed do eiusmod tempor.{" "}
+                East Asia International School is a combined primary and
+                secondary school in Nugegoda, Sri Lanka, committed to helping
+                students grow academically and personally.
               </p>
               <ul>
                 <li>
@@ -46,9 +47,10 @@ const AboutSection3 = ({ style }) => {
                     />
                   </div>
                   <div className="text">
-                    <h4>Successflly Trained</h4>
+                    <h4>Primary to Secondary Pathway</h4>
                     <p>
-                      Business tailored it design, management support services.
+                      Structured learning from early years through upper grades
+                      in one school community.
                     </p>
                   </div>
                 </li>
@@ -61,9 +63,10 @@ const AboutSection3 = ({ style }) => {
                     />
                   </div>
                   <div className="text">
-                    <h4>Education Growth</h4>
+                    <h4>Academic Development</h4>
                     <p>
-                      Business tailored it design, management support services.
+                      Lessons and activities that build subject mastery,
+                      confidence, and discipline.
                     </p>
                   </div>
                 </li>
@@ -76,9 +79,10 @@ const AboutSection3 = ({ style }) => {
                     />
                   </div>
                   <div className="text">
-                    <h4>Students Trained</h4>
+                    <h4>Supportive School Culture</h4>
                     <p>
-                      Business tailored it design, management support services.
+                      A caring environment where students are guided to do their
+                      best every day.
                     </p>
                   </div>
                 </li>
@@ -91,9 +95,10 @@ const AboutSection3 = ({ style }) => {
                     />
                   </div>
                   <div className="text">
-                    <h4>Successflly Trained</h4>
+                    <h4>Easy Parent Access</h4>
                     <p>
-                      Business tailored it design, management support services.
+                      Families can reach the school at 25 Sunethradevi Rd,
+                      Nugegoda, or via www.eastasian.lk.
                     </p>
                   </div>
                 </li>
@@ -103,10 +108,9 @@ const AboutSection3 = ({ style }) => {
           <div className="col-12 mt_110 xs_mt_100 wow fadeInUp">
             <div className="tf__about_us_counter d-flex flex-wrap align-items-center">
               <p>
-                <span className="counter">27,0000</span> More Students courde
-                youn do best !
+                <span>Contact:</span> +94 77 898 2620 | eastasian.lk
               </p>
-              <a href="#">Export All</a>
+              <a href="http://www.eastasian.lk/" target="_blank" rel="noreferrer">Visit Website</a>
             </div>
           </div>
         </div>
