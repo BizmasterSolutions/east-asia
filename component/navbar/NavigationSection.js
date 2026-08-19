@@ -25,11 +25,6 @@ const NavigationSection = ({ position, btnPosition, navRef }) => {
           </a>
           <ul className="tf__droap_menu">
             <li>
-              <SubNavlink href="/blog/learn-with-these-award-winning-best-blog-collage-courses">
-                blog details
-              </SubNavlink>
-            </li>
-            <li>
               <SubNavlink href="/events">event</SubNavlink>
             </li>
             <li>

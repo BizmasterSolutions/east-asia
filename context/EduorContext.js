@@ -9,11 +9,16 @@ export const EduorProvider = ({ children }) => {
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
 
   useEffect(() => {
+    const FIX_ON_SCROLL_Y = 80;
+    const FIX_OFF_SCROLL_Y = 20;
     let ticking = false;
 
     const updateHeaderFixed = () => {
-      const shouldBeFixed = window.scrollY >= 50;
-      setIsHeaderFixed((prev) => (prev === shouldBeFixed ? prev : shouldBeFixed));
+      const y = window.scrollY;
+      setIsHeaderFixed((prev) => {
+        const next = prev ? y > FIX_OFF_SCROLL_Y : y >= FIX_ON_SCROLL_Y;
+        return prev === next ? prev : next;
+      });
       ticking = false;
     };
 
