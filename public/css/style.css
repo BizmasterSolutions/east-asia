@@ -522,6 +522,31 @@ button {
   transition: box-shadow 0.3s ease;
 }
 
+/* Smooth mobile menu open/close (no Bootstrap JS is loaded, so the default
+   .collapse/.show classes would otherwise snap instantly with no transition). */
+@media (max-width: 991.98px) {
+  .main_menu .navbar-collapse,
+  .main_menu_2 .navbar-collapse {
+    display: grid !important;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    overflow: hidden;
+    transition: grid-template-rows 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+  }
+
+  .main_menu .navbar-collapse.show,
+  .main_menu_2 .navbar-collapse.show {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .main_menu .navbar-collapse > *,
+  .main_menu_2 .navbar-collapse > * {
+    overflow: hidden;
+    min-height: 0;
+  }
+}
+
 .menu_fix .navbar-brand {
   max-width: 100px;
 }
