@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { verifyToken } from "@/lib/auth";
 import prisma from "@/lib/prisma";
+import { deleteUploadThingFileByUrl } from "@/lib/uploadthing";
 
 async function auth() {
   const token = (await cookies()).get("admin_token")?.value;
@@ -29,7 +30,8 @@ export async function DELETE(_, { params }) {
   if (!(await auth())) return NextResponse.json({ message: "Unauthorized." }, { status: 401 });
   try {
     const id = parseInt(params.id);
-    await prisma.slideshow.delete({ where: { id } });
+    const deleted = await prisma.slideshow.delete({ where: { id } });
+    await deleteUploadThingFileByUrl(deleted.imagePath);
     return NextResponse.json({ message: "Deleted." });
   } catch (err) {
     console.error("[slideshow DELETE]", err);
