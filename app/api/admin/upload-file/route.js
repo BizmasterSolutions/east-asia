@@ -1,15 +1,38 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { verifyToken } from "@/lib/auth";
-import { writeFile, mkdir, unlink, access } from "fs/promises";
+import { unlink, access } from "fs/promises";
 import path from "path";
+import { utapi, extractUploadThingKey } from "@/lib/uploadthing";
 
 const ALLOWED_EXT = [".pdf", ".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif"];
 const MAX_SIZE = 20 * 1024 * 1024; // 20 MB
-const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
 
 async function fileExists(p) {
   try { await access(p); return true; } catch { return false; }
+}
+
+async function deleteOldFile(oldUrl) {
+  if (!oldUrl) return;
+
+  if (String(oldUrl).startsWith("/uploads/")) {
+    try {
+      const abs = path.join(process.cwd(), "public", oldUrl);
+      if (await fileExists(abs)) await unlink(abs);
+    } catch (e) {
+      console.error("[upload-file] Could not delete old file:", e.message);
+    }
+    return;
+  }
+
+  const key = extractUploadThingKey(oldUrl);
+  if (key) {
+    try {
+      await utapi.deleteFiles(key);
+    } catch (e) {
+      console.error("[upload-file] Could not delete old UploadThing file:", e.message);
+    }
+  }
 }
 
 export async function POST(req) {
@@ -35,16 +58,15 @@ export async function POST(req) {
       return NextResponse.json({ message: "Allowed types: PDF, JPG, PNG, WEBP, GIF, AVIF." }, { status: 400 });
     }
 
-    const filename = `${Date.now()}-${Math.random().toString(36).slice(2)}${ext}`;
-    await mkdir(UPLOAD_DIR, { recursive: true });
-    await writeFile(path.join(UPLOAD_DIR, filename), Buffer.from(await file.arrayBuffer()));
-
-    if (oldUrl && String(oldUrl).startsWith("/uploads/")) {
-      const abs = path.join(process.cwd(), "public", oldUrl);
-      if (await fileExists(abs)) await unlink(abs);
+    const { data, error } = await utapi.uploadFiles(file);
+    if (error) {
+      console.error("[upload-file] UploadThing error:", error);
+      return NextResponse.json({ message: "Upload failed." }, { status: 500 });
     }
 
-    return NextResponse.json({ url: `/uploads/${filename}` });
+    if (oldUrl) await deleteOldFile(oldUrl);
+
+    return NextResponse.json({ url: data.ufsUrl });
   } catch (err) {
     console.error("[upload-file]", err);
     return NextResponse.json({ message: "Upload failed." }, { status: 500 });
